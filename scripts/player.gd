@@ -43,11 +43,22 @@ func handle_movement_run(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, accel * accel_coeff * delta)
 
+var buffer_time = 0;
+
 func handle_movement_jump(delta: float) -> void:
 	
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
+	if buffer_time > 0:
+		if is_on_floor():
 			velocity += Vector2.UP * JUMP_SPEED
+			buffer_time = 0
+		else:
+			buffer_time -= delta
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity += Vector2.UP * JUMP_SPEED
+		else:
+			buffer_time = COYOTE_TIME_SECS
+			
 		
 	if velocity.y < -100 and Input.is_action_just_released("jump"):
 		velocity.y = -100
