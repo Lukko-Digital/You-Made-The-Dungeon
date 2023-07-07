@@ -393,13 +393,13 @@ z_index = 5
 position = Vector2(0, -14)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(4, -71)
-zoom = Vector2(3.998, 3.998)
+position = Vector2(0, -52)
+zoom = Vector2(3.662, 3.662)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_vertical_enabled = true
 drag_top_margin = 0.6
-drag_bottom_margin = 0.1
+drag_bottom_margin = 0.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cfcqt")
