@@ -55,7 +55,10 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="COLL"
-2d_physics/layer_2="PLAYER"
+2d_physics/layer_2="TERRAIN"
+2d_physics/layer_3="TRAPS"
+2d_physics/layer_4="NPC"
+2d_physics/layer_5="PLAYER"
 
 [rendering]
 
