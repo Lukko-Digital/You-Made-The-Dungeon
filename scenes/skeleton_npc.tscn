@@ -36,8 +36,10 @@ shape = SubResource("CircleShape2D_ms0u2")
 position = Vector2(0, -10)
 texture = ExtResource("1_0jqf3")
 hframes = 4
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_1deko")
 }
