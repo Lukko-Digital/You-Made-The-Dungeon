@@ -13,15 +13,14 @@ func _process(delta):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.show()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 
-
-func _on_npc_body_entered(body):
-	if body.name == "player":
+func _on_npc_dialogue_collider_area_entered(area):
+	if area.is_in_group('npc'):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.show()
 		npc_interaction_available = true
 
 
-func _on_npc_body_exited(body):
-	if body.name == "player":
+func _on_npc_dialogue_collider_area_exited(area):
+	if area.is_in_group('npc'):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
 		npc_interaction_available = false

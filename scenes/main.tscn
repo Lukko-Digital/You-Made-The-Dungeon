@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cjgg86yjdqtp7" path="res://scenes/dart_shooter.tscn" id="5_kli11"]
 [ext_resource type="PackedScene" uid="uid://cglq57sgw1x0x" path="res://scenes/jump_spike.tscn" id="6_qyvms"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7teia"]
+size = Vector2(14, 27)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_ad5a3")
 0:0/0 = 0
@@ -507,6 +510,14 @@ drag_vertical_enabled = true
 drag_top_margin = 0.6
 drag_bottom_margin = 0.0
 
+[node name="NPCDialogueCollider" type="Area2D" parent="player"]
+position = Vector2(0, 14)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/NPCDialogueCollider"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_7teia")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cfcqt")
 format = 2
@@ -551,5 +562,7 @@ scale = Vector2(-1, 1)
 [node name="JumpSpike" parent="." instance=ExtResource("6_qyvms")]
 position = Vector2(-184, -40)
 
+[connection signal="area_entered" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_entered"]
+[connection signal="area_exited" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_exited"]
 [connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
 [connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
