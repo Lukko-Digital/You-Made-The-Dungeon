@@ -67,6 +67,7 @@ func handle_movement_jump(delta: float) -> void:
 		
 	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
+		is_jumping = true
 	else:
 		gravity_coeff = 1.0
 		
