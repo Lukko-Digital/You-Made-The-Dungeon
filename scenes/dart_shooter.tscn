@@ -75,11 +75,14 @@ transitions = ["Start", "blink", SubResource("AnimationNodeStateMachineTransitio
 size = Vector2(171, 13)
 
 [node name="DartShooter" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_p7qbr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_c4fe4")
 hframes = 5
+frame = 1
 region_rect = Rect2(0, 0, 80, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

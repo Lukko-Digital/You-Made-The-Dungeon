@@ -129,6 +129,7 @@ func handle_spikes(body):
 		#Checks if the animation is within 0.2 seconds of poping up
 		if abs(spike_animation.current_animation_position - 2.01) < 0.1:
 			velocity.y = -JUMP_SPEED * 2
+			is_jumping = false
 			
 #Called when you jump off the dart or hit a wall
 func off_dart(body):
