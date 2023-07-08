@@ -453,6 +453,7 @@ position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_21qqj")
 
 [node name="NPCDialogueCollider" type="Area2D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCDialogueCollider"]
 position = Vector2(0, 2.5)
