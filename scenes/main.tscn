@@ -545,3 +545,5 @@ position = Vector2(221, -80)
 
 [connection signal="body_entered" from="player/Area2D" to="player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="player/Area2D" to="player" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
+[connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
