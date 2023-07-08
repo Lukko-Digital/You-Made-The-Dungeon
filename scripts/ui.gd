@@ -8,10 +8,14 @@ var dialogue
 var num_interactions
 var current_dialogue_idx = 0
 
+const TEXT_SPEED = 0.05
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
+	
+	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/TextTimer.wait_time = TEXT_SPEED
 	
 	# Load dialogue json
 	assert(FileAccess.file_exists(DIALOGUE_PATH), "Dialog file at %s does not exist" % DIALOGUE_PATH)
@@ -63,7 +67,6 @@ func get_dialogue_list(name):
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
-		
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
 		return

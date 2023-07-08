@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkhd2ngxnf8vq"]
+[gd_scene load_steps=4 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
+[ext_resource type="Texture2D" uid="uid://03o6p8phl2e2" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
 [ext_resource type="FontFile" uid="uid://c1t3nidwmcnq4" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
 
 [node name="ui" type="CanvasLayer"]
@@ -28,6 +29,11 @@ layout_mode = 2
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+texture = ExtResource("2_6wxhs")
+patch_margin_left = 36
+patch_margin_top = 36
+patch_margin_right = 36
+patch_margin_bottom = 36
 
 [node name="DialoguePrompt" type="Label" parent="HBoxContainer/VBoxContainer/NinePatchRect"]
 layout_mode = 1
@@ -100,6 +106,9 @@ text = "zao shang hao zong guo xian zai wo you bing qi lin wo hen xi huan bing q
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="TextTimer" type="Timer" parent="HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox"]
+one_shot = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
