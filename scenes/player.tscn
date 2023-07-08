@@ -257,7 +257,6 @@ script = ExtResource("1_o2u3n")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
 hframes = 19
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -275,10 +274,10 @@ parameters/airborne/blend_position = Vector2(-0.557285, 0.301397)
 parameters/grounded/blend_position = 0
 parameters/land/blend_position = 0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TrapColider" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TrapColider"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cwm3s")
 
@@ -286,5 +285,5 @@ shape = SubResource("RectangleShape2D_cwm3s")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6l6e3")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="TrapColider" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="TrapColider" to="." method="_on_area_2d_body_exited"]
