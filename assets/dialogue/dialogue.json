@@ -1,0 +1,12 @@
+{
+	"NPC": {
+		"0": ["yo whats up", "haven't seen you round here before", "good luck!"],
+		"1": ["what are you doing?", "get going!"],
+		"2": ["..."]
+	},
+	"SkeletonNPC": {
+		"0": ["yoooooooo", "ma boney boy", "whats poppin"],
+		"1": ["gogogo"],
+		"5": ["fall good"]
+	}
+}

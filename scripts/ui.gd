@@ -1,10 +1,16 @@
 extends CanvasLayer
 
 var npc_interaction_available = false
+
+const DIALOGUE_PATH: String = "res://assets/dialogue/dialogue.json"
+var dialog
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
+	
+	assert(FileAccess.file_exists(DIALOGUE_PATH), "Dialog file at `res://assets/dialogue/dialogue.json` does not exist")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
