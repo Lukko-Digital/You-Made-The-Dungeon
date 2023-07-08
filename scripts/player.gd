@@ -27,10 +27,15 @@ var is_on_vines: bool = false
 var is_on_dart: bool = false
 var jumping_off_dart: bool = false
 
+func _ready():
+	animation_tree["parameters/conditions/not_shot"] = true
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 	handle_animation()
+#	print(animation_tree["parameters/conditions/shot_head"],
+#		animation_tree["parameters/conditions/shot_body"],
+#		animation_tree["parameters/conditions/not_shot"])
 
 func handle_movement(delta: float) -> void:
 	handle_movement_gravity(delta)
@@ -144,15 +149,16 @@ func handle_climbing(body):
 
 #Called when you jump off the dart or hit a wall
 func off_dart(body):
+	body.queue_free()
 	animation_tree["parameters/conditions/shot_head"] = false
 	animation_tree["parameters/conditions/shot_body"] = false
 	animation_tree["parameters/conditions/not_shot"] = true
-	body.queue_free()
 	is_on_dart = false
 	jumping_off_dart = false
 	
 func on_dart(body):
 	#Sets velocity/position equal to darts velocity/position
+	animation_tree["parameters/conditions/not_shot"] = false
 	velocity = body.linear_velocity
 	global_position.y = body.global_position.y - 1
 	body.visible = false
@@ -160,6 +166,10 @@ func on_dart(body):
 	is_jumping = false
 
 func handle_trap_collisions(delta):
+	handle_jump_spike_collision()
+	handle_dart_collision()
+	
+func handle_jump_spike_collision():
 	#legs only collide with spikes
 	for body in LegsCollider.get_overlapping_bodies():
 		if body.is_in_group("JumpSpikes"):
@@ -170,6 +180,7 @@ func handle_trap_collisions(delta):
 				velocity.y = -JUMP_SPEED * 2
 				is_jumping = false
 
+func handle_dart_collision():
 	#body can collide with spikes and darts (dart code is reused but only changed for which animation to run
 	for body in ChestCollider.get_overlapping_bodies():
 		handle_climbing(body)
@@ -178,20 +189,20 @@ func handle_trap_collisions(delta):
 				#Changes animation
 				animation_tree["parameters/conditions/shot_body"] = true
 				animation_tree["parameters/conditions/shot_head"] = false
-				animation_tree["parameters/conditions/not_shot"] = false
 				on_dart(body)
 			else:
 				off_dart(body)
+				return
 
 	for body in HeadCollider.get_overlapping_bodies():
 		if body.is_in_group("Darts") and not animation_tree["parameters/conditions/shot_body"]:
 			if (not is_on_wall() or not is_on_dart) and not jumping_off_dart:
 				animation_tree["parameters/conditions/shot_head"] = true
 				animation_tree["parameters/conditions/shot_body"] = false
-				animation_tree["parameters/conditions/not_shot"] = false
 				on_dart(body)
 			else:
 				off_dart(body)
+				return
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":
