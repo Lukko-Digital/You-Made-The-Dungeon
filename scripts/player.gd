@@ -15,6 +15,8 @@ const COYOTE_TIME_SECS: float = 0.1
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
+var run_speed_coeff: float = 1.0
+var in_spikes: bool = false
 
 
 func _physics_process(delta: float) -> void:
@@ -29,7 +31,11 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func handle_movement_gravity(delta: float) -> void:
-	if not is_on_floor():
+	if in_spikes:
+		run_speed_coeff = 0.25
+		gravity_coeff = 0.0
+		velocity.y = move_toward(velocity.y, 0, 500 * delta)
+	elif not is_on_floor():
 		velocity.y = move_toward(velocity.y, TERMINAL_FALL_SPEED, gravity * gravity_coeff * delta)
 
 func handle_movement_run(delta: float) -> void:
@@ -41,7 +47,7 @@ func handle_movement_run(delta: float) -> void:
 	var accel = RUN_DECEL if is_decelerating else RUN_ACCEL
 	var accel_coeff = 1 if is_on_floor() else RUN_ACCEL_AIR_FACTOR
 	
-	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, accel * accel_coeff * delta)
+	velocity.x = move_toward(velocity.x, direction * RUN_SPEED * run_speed_coeff, accel * accel_coeff * delta)
 
 var buffer_time = 0;
 
@@ -86,5 +92,12 @@ func handle_animation():
 
 
 func _on_area_2d_body_entered(body):
-	print(body.name)
-	pass # Replace with function body.
+	if body.name == "Spikes":
+		in_spikes = true
+
+func _on_area_2d_body_exited(body):
+	if body.name == "Spikes":
+		in_spikes = false
+		run_speed_coeff = 1
+		gravity_coeff = 1
+
