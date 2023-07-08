@@ -22,7 +22,8 @@ const COYOTE_TIME_SECS: float = 0.1
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
-var is_climbing: bool = false
+var is_on_spikes: bool = false
+var is_on_vines: bool = false
 var is_on_dart: bool = false
 var jumping_off_dart: bool = false
 
@@ -40,9 +41,14 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func handle_movement_gravity(delta: float) -> void:
-	if is_climbing:
+	if is_on_spikes or is_on_vines:
 		gravity_coeff = 0.0
 		velocity.y = move_toward(velocity.y, 0, 500 * delta)
+		
+		if abs(velocity.x) > 0 or abs(velocity.y) > 0:
+			animation_tree["parameters/conditions/moving"] = true
+		else:
+			animation_tree["parameters/conditions/moving"] = false
 	elif not is_on_floor():
 		velocity.y = move_toward(velocity.y, TERMINAL_FALL_SPEED, gravity * gravity_coeff * delta)
 
@@ -55,17 +61,20 @@ func handle_movement_run(delta: float) -> void:
 	var accel = RUN_DECEL if is_decelerating else RUN_ACCEL
 	var accel_coeff = 1 if is_on_floor() else RUN_ACCEL_AIR_FACTOR
 	
-	var max_speed = direction * CLIMB_SPEED if is_climbing else direction * RUN_SPEED
+	var max_speed = direction * CLIMB_SPEED if (is_on_spikes or is_on_vines) else direction * RUN_SPEED
 	velocity.x = move_toward(velocity.x, max_speed, accel * accel_coeff * delta)
 	
-	if is_climbing:
+	if is_on_vines:
 		var y_direction := Input.get_action_strength("down") - Input.get_action_strength("up")
 		velocity.y = y_direction * CLIMB_SPEED
-		
-		if abs(velocity.x) > 0 or abs(velocity.y) > 0:
-			animation_tree["parameters/conditions/moving"] = true
-		else:
+	
+	if is_on_spikes:
+		if Input.is_action_just_pressed("down"):
+			animation_tree["parameters/conditions/climb"] = false
+			animation_tree["parameters/conditions/not_climb"] = true
 			animation_tree["parameters/conditions/moving"] = false
+			is_on_spikes = false
+			gravity_coeff = 1
 
 var last_jump_input: float = INF
 var last_grounded: float = INF
@@ -86,10 +95,18 @@ func handle_movement_jump(delta: float) -> void:
 	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
-	elif is_on_dart and last_jump_input <= COYOTE_TIME_SECS:
+	elif is_on_dart and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
 		jumping_off_dart = true
+	elif is_on_vines and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
+		velocity.y = -JUMP_SPEED
+		is_jumping = true
+		animation_tree["parameters/conditions/climb"] = false
+		animation_tree["parameters/conditions/not_climb"] = true
+		animation_tree["parameters/conditions/moving"] = false
+		is_on_vines = false
+		gravity_coeff = 1
 	else:
 		gravity_coeff = 1.0
 		
@@ -117,19 +134,13 @@ func handle_animation():
 	animation_tree["parameters/default/conditions/grounded"] = true
 	animation_tree["parameters/default/conditions/airborne"] = false
 
-func handle_spikes(body):
+func handle_climbing(body):
 	#"Spikes" is the tilemap with the stationary spikes
-	if body.name == "Spikes":
-		is_climbing = true
+	if body.name == "Vines" and velocity.y > 0:
+		is_on_vines = true
 		animation_tree["parameters/conditions/climb"] = true
 		animation_tree["parameters/conditions/not_climb"] = false
-	elif body.is_in_group("JumpSpikes"):
-		var spike_animation = body.get_node("AnimationPlayer")
-		#The spikes pop up at 2 seconds in the animation
-		#Checks if the animation is within 0.2 seconds of poping up
-		if abs(spike_animation.current_animation_position - 2.01) < 0.1:
-			velocity.y = -JUMP_SPEED * 2
-			is_jumping = false
+		is_jumping = false
 
 #Called when you jump off the dart or hit a wall
 func off_dart(body):
@@ -146,31 +157,40 @@ func on_dart(body):
 	global_position.y = body.global_position.y - 1
 	body.visible = false
 	is_on_dart = true
+	is_jumping = false
 
 func handle_trap_collisions(delta):
 	#legs only collide with spikes
 	for body in LegsCollider.get_overlapping_bodies():
-		handle_spikes(body)
+		if body.is_in_group("JumpSpikes"):
+			var spike_animation = body.get_node("AnimationPlayer")
+			#The spikes pop up at 2 seconds in the animation
+			#Checks if the animation is within 0.2 seconds of poping up
+			if abs(spike_animation.current_animation_position - 2.01) < 0.1:
+				velocity.y = -JUMP_SPEED * 2
+				is_jumping = false
 
 	#body can collide with spikes and darts (dart code is reused but only changed for which animation to run
 	for body in ChestCollider.get_overlapping_bodies():
-		handle_spikes(body)
-		if body.is_in_group("Darts") and not animation_tree["parameters/conditions/shot_head"]:
+		handle_climbing(body)
+		if body.is_in_group("Darts"):
 			if (not is_on_wall() or not is_on_dart) and not jumping_off_dart:
 				#Changes animation
 				animation_tree["parameters/conditions/shot_body"] = true
+				animation_tree["parameters/conditions/shot_head"] = false
 				animation_tree["parameters/conditions/not_shot"] = false
 				on_dart(body)
-			elif is_on_wall() or jumping_off_dart:
+			else:
 				off_dart(body)
 
 	for body in HeadCollider.get_overlapping_bodies():
 		if body.is_in_group("Darts") and not animation_tree["parameters/conditions/shot_body"]:
 			if (not is_on_wall() or not is_on_dart) and not jumping_off_dart:
 				animation_tree["parameters/conditions/shot_head"] = true
+				animation_tree["parameters/conditions/shot_body"] = false
 				animation_tree["parameters/conditions/not_shot"] = false
 				on_dart(body)
-			elif is_on_wall() or jumping_off_dart:
+			else:
 				off_dart(body)
 
 func _on_area_2d_body_exited(body):
@@ -178,5 +198,25 @@ func _on_area_2d_body_exited(body):
 		animation_tree["parameters/conditions/climb"] = false
 		animation_tree["parameters/conditions/not_climb"] = true
 		animation_tree["parameters/conditions/moving"] = false
-		is_climbing = false
+		is_on_spikes = false
 		gravity_coeff = 1
+	if body.name == "Vines":
+		animation_tree["parameters/conditions/climb"] = false
+		animation_tree["parameters/conditions/not_climb"] = true
+		animation_tree["parameters/conditions/moving"] = false
+		is_on_vines = false
+		gravity_coeff = 1
+	
+
+
+func _on_chest_collider_body_entered(body):
+	if body.name == "Spikes":
+		is_on_spikes = true
+		animation_tree["parameters/conditions/climb"] = true
+		animation_tree["parameters/conditions/not_climb"] = false
+
+func _on_legs_collider_body_entered(body):
+	if body.name == "Spikes":
+		is_on_spikes = true
+		animation_tree["parameters/conditions/climb"] = true
+		animation_tree["parameters/conditions/not_climb"] = false
