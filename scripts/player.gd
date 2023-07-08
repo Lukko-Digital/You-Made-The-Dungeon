@@ -62,6 +62,10 @@ func handle_movement_run(delta: float) -> void:
 		var y_direction := Input.get_action_strength("down") - Input.get_action_strength("up")
 		velocity.y = y_direction * CLIMB_SPEED
 		
+		if abs(velocity.x) > 0 or abs(velocity.y) > 0:
+			animation_tree["parameters/conditions/moving"] = true
+		else:
+			animation_tree["parameters/conditions/moving"] = false
 
 var last_jump_input: float = INF
 var last_grounded: float = INF
@@ -114,13 +118,19 @@ func handle_animation():
 	animation_tree["parameters/default/conditions/airborne"] = false
 
 func handle_spikes(body):
+	#"Spikes" is the tilemap with the stationary spikes
 	if body.name == "Spikes":
-			climbing = true
+		climbing = true
+		animation_tree["parameters/conditions/climb"] = true
+		animation_tree["parameters/conditions/not_climb"] = false
 	elif body.is_in_group("JumpSpikes"):
 		var spike_animation = body.get_node("AnimationPlayer")
+		#The spikes pop up at 2 seconds in the animation
+		#Checks if the animation is within 0.2 seconds of poping up
 		if abs(spike_animation.current_animation_position - 2.01) < 0.1:
 			velocity.y = -JUMP_SPEED * 2
 			
+#Called when you jump off the dart or hit a wall
 func off_dart(body):
 	animation_tree["parameters/conditions/shot_head"] = false
 	animation_tree["parameters/conditions/shot_body"] = false
@@ -128,15 +138,19 @@ func off_dart(body):
 	body.queue_free()
 
 func handle_trap_collisions():
+	#legs only collide with spikes
 	for body in LegsCollider.get_overlapping_bodies():
 		handle_spikes(body)
 
+	#body can collide with spikes and darts (dart code is reused but only changed for which animation to run
 	for body in ChestCollider.get_overlapping_bodies():
 		handle_spikes(body)
 		if body.is_in_group("Darts"):
 			if not is_on_wall() and not jumping_off_dart:
+				#Changes animation
 				animation_tree["parameters/conditions/shot_body"] = true
 				animation_tree["parameters/conditions/not_shot"] = false
+				#Sets velocity/position equal to darts velocity/position
 				velocity = body.linear_velocity
 				global_position.y = body.global_position.y - 1
 				body.visible = false
@@ -147,7 +161,6 @@ func handle_trap_collisions():
 				jumping_off_dart = false
 	
 	for body in HeadCollider.get_overlapping_bodies():
-		handle_spikes(body)
 		if body.is_in_group("Darts"):
 			if not is_on_wall() and not jumping_off_dart:
 				animation_tree["parameters/conditions/shot_head"] = true
@@ -163,5 +176,8 @@ func handle_trap_collisions():
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":
+		animation_tree["parameters/conditions/climb"] = false
+		animation_tree["parameters/conditions/not_climb"] = true
+		animation_tree["parameters/conditions/moving"] = false
 		climbing = false
 		gravity_coeff = 1

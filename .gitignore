@@ -1,4 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 *.import
-project.godot
+./project.godot
