@@ -50,8 +50,10 @@ func _on_npc_dialogue_collider_area_exited(area):
 func load_npc_dialogue(name):
 	var dialogue_options = dialogue[name]
 	var interaction_limits = dialogue_options.keys()
+	var dialogue_list
 	interaction_limits.reverse()
 	for limit in interaction_limits:
 		if num_interactions[name] >= int(limit):
-			print(limit)
+			dialogue_list = dialogue_options[str(limit)]
 			break
+	print(dialogue_list)
