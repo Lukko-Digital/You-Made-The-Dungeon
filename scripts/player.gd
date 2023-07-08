@@ -83,3 +83,8 @@ func handle_animation():
 	animation_tree["parameters/grounded/blend_position"] = (((abs(velocity.x)/RUN_SPEED)-.5)*2)
 	animation_tree["parameters/conditions/grounded"] = true
 	animation_tree["parameters/conditions/airborne"] = false
+
+
+func _on_area_2d_body_entered(body):
+	print(body.name)
+	pass # Replace with function body.
