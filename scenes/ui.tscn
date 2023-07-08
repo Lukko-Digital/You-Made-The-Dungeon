@@ -1,10 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkhd2ngxnf8vq"]
+[gd_scene load_steps=8 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
 [ext_resource type="Texture2D" uid="uid://03o6p8phl2e2" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
 [ext_resource type="FontFile" uid="uid://c1t3nidwmcnq4" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
 [ext_resource type="Texture2D" uid="uid://dx461uwio2nym" path="res://assets/sprites/key_press.png" id="2_iarai"]
-[ext_resource type="Texture2D" uid="uid://dlc14trdv0tut" path="res://assets/sprites/key_press_bg.jpg" id="3_ggm0r"]
+[ext_resource type="Texture2D" uid="uid://criln7mov7pob" path="res://assets/sprites/key_press_bg.png" id="3_d1usr"]
+
+[sub_resource type="Animation" id="Animation_wtn3e"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gelpv"]
+_data = {
+"idle": SubResource("Animation_wtn3e")
+}
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_jwmxf")
@@ -32,34 +53,28 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
-[node name="DialoguePrompt2" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="DialoguePrompt" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="EKey" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt2"]
+[node name="EKey" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt"]
 z_index = 10
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 texture = ExtResource("2_iarai")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt2/EKey"]
+[node name="KeyBackground" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt"]
+self_modulate = Color(1, 1, 1, 0.592157)
+scale = Vector2(5, 5)
+texture = ExtResource("3_d1usr")
 
-[node name="KeyBackground" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt2"]
-scale = Vector2(3, 3)
-texture = ExtResource("3_ggm0r")
-
-[node name="DialoguePrompt" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_exex5")
-theme_override_font_sizes/font_size = 40
-text = "[e] talk"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt"]
+root_node = NodePath("../EKey")
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_gelpv")
+}
 
 [node name="DialogueBox" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
 visible = false
