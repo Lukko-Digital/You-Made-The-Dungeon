@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc3qsvy1xf5x5"]
+[gd_scene load_steps=11 format=3 uid="uid://bc3qsvy1xf5x5"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_gh0mp"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_ad5a3"]
-[ext_resource type="PackedScene" uid="uid://cglq57sgw1x0x" path="res://scenes/jump_spike.tscn" id="3_s888r"]
-[ext_resource type="PackedScene" uid="uid://cjgg86yjdqtp7" path="res://scenes/dart_shooter.tscn" id="4_folrg"]
+[ext_resource type="PackedScene" uid="uid://bnu6xx6tx01yh" path="res://scenes/npc.tscn" id="3_pxgd6"]
+[ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="4_npxwd"]
+[ext_resource type="PackedScene" path="res://scenes/dart_shooter.tscn" id="5_kli11"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="6_qyvms"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_ad5a3")
@@ -496,13 +498,12 @@ position = Vector2(221, -80)
 
 [node name="ui" parent="." instance=ExtResource("4_npxwd")]
 
-[connection signal="body_entered" from="player/Area2D" to="player" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="player/Area2D" to="player" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
-[connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
-[node name="JumpSpike" parent="." instance=ExtResource("3_s888r")]
-position = Vector2(-184, -40)
-
-[node name="DartShooter" parent="." instance=ExtResource("4_folrg")]
+[node name="DartShooter" parent="." instance=ExtResource("5_kli11")]
 position = Vector2(-680, -80)
 scale = Vector2(-1, 1)
+
+[node name="JumpSpike" parent="." instance=ExtResource("6_qyvms")]
+position = Vector2(-184, -40)
+
+[connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
+[connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
