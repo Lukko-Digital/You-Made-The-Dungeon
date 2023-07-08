@@ -27,7 +27,7 @@ _data = {
 "idle": SubResource("Animation_bdaki")
 }
 
-[node name="Area2D" type="Area2D"]
+[node name="SkeletonNPC" type="Area2D" groups=["npc"]]
 collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
