@@ -274,10 +274,10 @@ parameters/airborne/blend_position = Vector2(-0.557285, 0.301397)
 parameters/grounded/blend_position = 0
 parameters/land/blend_position = 0
 
-[node name="TrapColider" type="Area2D" parent="."]
+[node name="TrapCollider" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TrapColider"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TrapCollider"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cwm3s")
 
@@ -285,5 +285,5 @@ shape = SubResource("RectangleShape2D_cwm3s")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6l6e3")
 
-[connection signal="body_entered" from="TrapColider" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="TrapColider" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="TrapCollider" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="TrapCollider" to="." method="_on_area_2d_body_exited"]
