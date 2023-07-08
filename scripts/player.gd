@@ -44,6 +44,11 @@ func handle_movement_gravity(delta: float) -> void:
 	if is_on_spikes or is_on_vines:
 		gravity_coeff = 0.0
 		velocity.y = move_toward(velocity.y, 0, 500 * delta)
+		
+		if abs(velocity.x) > 0 or abs(velocity.y) > 0:
+			animation_tree["parameters/conditions/moving"] = true
+		else:
+			animation_tree["parameters/conditions/moving"] = false
 	elif not is_on_floor():
 		velocity.y = move_toward(velocity.y, TERMINAL_FALL_SPEED, gravity * gravity_coeff * delta)
 
@@ -62,11 +67,6 @@ func handle_movement_run(delta: float) -> void:
 	if is_on_vines:
 		var y_direction := Input.get_action_strength("down") - Input.get_action_strength("up")
 		velocity.y = y_direction * CLIMB_SPEED
-		
-		if abs(velocity.x) > 0 or abs(velocity.y) > 0:
-			animation_tree["parameters/conditions/moving"] = true
-		else:
-			animation_tree["parameters/conditions/moving"] = false
 	
 	if is_on_spikes:
 		if Input.is_action_just_pressed("down"):
@@ -99,6 +99,9 @@ func handle_movement_jump(delta: float) -> void:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
 		jumping_off_dart = true
+	elif is_on_vines and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
+		velocity.y = -JUMP_SPEED
+		is_jumping = true
 	else:
 		gravity_coeff = 1.0
 		
@@ -128,10 +131,6 @@ func handle_animation():
 
 func handle_climbing(body):
 	#"Spikes" is the tilemap with the stationary spikes
-	if body.name == "Spikes":
-		is_on_spikes = true
-		animation_tree["parameters/conditions/climb"] = true
-		animation_tree["parameters/conditions/not_climb"] = false
 	if body.name == "Vines" and velocity.y > 5:
 		is_on_vines = true
 		animation_tree["parameters/conditions/climb"] = true
@@ -206,7 +205,13 @@ func _on_area_2d_body_exited(body):
 
 
 func _on_chest_collider_body_entered(body):
-	handle_climbing(body)
+	if body.name == "Spikes":
+		is_on_spikes = true
+		animation_tree["parameters/conditions/climb"] = true
+		animation_tree["parameters/conditions/not_climb"] = false
 
 func _on_legs_collider_body_entered(body):
-	handle_climbing(body)
+	if body.name == "Spikes":
+		is_on_spikes = true
+		animation_tree["parameters/conditions/climb"] = true
+		animation_tree["parameters/conditions/not_climb"] = false
