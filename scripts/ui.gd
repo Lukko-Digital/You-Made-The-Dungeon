@@ -27,7 +27,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and current_interactable_npc:
-		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
+#		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 #		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/Label.text = 'asdf'
 		load_npc_dialogue(current_interactable_npc)
 		if not in_interaction:
@@ -44,7 +44,6 @@ func _on_npc_dialogue_collider_area_exited(area):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
 		current_dialogue_idx = 0
-		num_interactions[current_interactable_npc] += 1
 		current_interactable_npc = null
 		in_interaction = false
 		
@@ -64,6 +63,9 @@ func get_dialogue_list(name):
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
+		
+		num_interactions[current_interactable_npc] += 1
+		current_dialogue_idx = 0
 		return
 	
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.show()
