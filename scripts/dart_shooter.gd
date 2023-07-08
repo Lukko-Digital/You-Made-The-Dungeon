@@ -16,8 +16,6 @@ func _on_line_of_sight_body_entered(body):
 		var new_dart = dart_scene.instantiate()
 		new_dart.linear_velocity.x = scale.x * -375
 		add_child(new_dart)
-	
-
 
 func _on_timer_timeout():
 	animation_tree["parameters/conditions/shoot"] = false
