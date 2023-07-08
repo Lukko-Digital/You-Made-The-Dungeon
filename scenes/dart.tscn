@@ -1,20 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://co4m5r43u1j1l"]
 
-[ext_resource type="Texture2D" uid="uid://y30crtfokuno" path="res://icon.svg" id="1_hadi4"]
+[ext_resource type="Texture2D" uid="uid://sp54mpi63q8b" path="res://assets/sprites/dart.png" id="1_bxxqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32jux"]
-size = Vector2(10, 2)
+size = Vector2(10, 3)
 
 [node name="Dart" type="RigidBody2D" groups=["Darts"]]
 collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
-linear_velocity = Vector2(100, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
 shape = SubResource("RectangleShape2D_32jux")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(4.76837e-07, 0)
-scale = Vector2(0.15625, 0.03125)
-texture = ExtResource("1_hadi4")
+position = Vector2(-5, -1)
+scale = Vector2(-1, -1)
+texture = ExtResource("1_bxxqf")
