@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://71rn36tt4bcn"]
+[gd_scene load_steps=5 format=3 uid="uid://ckrsoc5xcvhor"]
 
-[ext_resource type="Texture2D" uid="uid://c4o2cu41e37ng" path="res://assets/sprites/npc_skeleton.png" id="1_0jqf3"]
+[ext_resource type="Texture2D" uid="uid://usj4887hyljw" path="res://assets/sprites/npc_skeleton.png" id="1_0jqf3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ms0u2"]
 radius = 29.0172
@@ -28,6 +28,7 @@ _data = {
 }
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ms0u2")
