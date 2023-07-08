@@ -102,6 +102,11 @@ func handle_movement_jump(delta: float) -> void:
 	elif is_on_vines and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
+		animation_tree["parameters/conditions/climb"] = false
+		animation_tree["parameters/conditions/not_climb"] = true
+		animation_tree["parameters/conditions/moving"] = false
+		is_on_vines = false
+		gravity_coeff = 1
 	else:
 		gravity_coeff = 1.0
 		
@@ -131,10 +136,11 @@ func handle_animation():
 
 func handle_climbing(body):
 	#"Spikes" is the tilemap with the stationary spikes
-	if body.name == "Vines" and velocity.y > 5:
+	if body.name == "Vines" and velocity.y > 0:
 		is_on_vines = true
 		animation_tree["parameters/conditions/climb"] = true
 		animation_tree["parameters/conditions/not_climb"] = false
+		is_jumping = false
 
 #Called when you jump off the dart or hit a wall
 func off_dart(body):
@@ -149,14 +155,13 @@ func on_dart(body):
 	#Sets velocity/position equal to darts velocity/position
 	velocity = body.linear_velocity
 	global_position.y = body.global_position.y - 1
-	#body.visible = false
+	body.visible = false
 	is_on_dart = true
 	is_jumping = false
 
 func handle_trap_collisions(delta):
 	#legs only collide with spikes
 	for body in LegsCollider.get_overlapping_bodies():
-		handle_climbing(body)
 		if body.is_in_group("JumpSpikes"):
 			var spike_animation = body.get_node("AnimationPlayer")
 			#The spikes pop up at 2 seconds in the animation
