@@ -113,6 +113,12 @@ func handle_trap_collisions():
 			var spike_animation = body.get_node("AnimationPlayer")
 			if abs(spike_animation.current_animation_position - 2.01) < 0.1:
 				velocity.y = -JUMP_SPEED * 2
+		elif body.is_in_group("Darts"):
+			if not is_on_wall():
+				velocity = body.linear_velocity
+				body.visible = false
+			else:
+				body.queue_free()
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":

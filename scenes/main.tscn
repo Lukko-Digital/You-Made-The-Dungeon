@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc3qsvy1xf5x5"]
+[gd_scene load_steps=9 format=3 uid="uid://bc3qsvy1xf5x5"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_gh0mp"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_ad5a3"]
 [ext_resource type="PackedScene" uid="uid://cglq57sgw1x0x" path="res://scenes/jump_spike.tscn" id="3_s888r"]
+[ext_resource type="PackedScene" uid="uid://co4m5r43u1j1l" path="res://scenes/dart.tscn" id="4_tl3wm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_ad5a3")
@@ -492,3 +493,6 @@ layer_0/tile_data = PackedInt32Array(-393243, 262144, 6, -327707, 262144, 7, -39
 
 [node name="JumpSpike" parent="." instance=ExtResource("3_s888r")]
 position = Vector2(-184, -40)
+
+[node name="Dart" parent="." instance=ExtResource("4_tl3wm")]
+position = Vector2(-21, -10)
