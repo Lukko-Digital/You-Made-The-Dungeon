@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bc3qsvy1xf5x5"]
+[gd_scene load_steps=15 format=3 uid="uid://bc3qsvy1xf5x5"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_gh0mp"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_ad5a3"]
 [ext_resource type="PackedScene" uid="uid://bnu6xx6tx01yh" path="res://scenes/npc.tscn" id="3_pxgd6"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="4_npxwd"]
-[ext_resource type="PackedScene" uid="uid://cjgg86yjdqtp7" path="res://scenes/dart_shooter.tscn" id="5_kli11"]
-[ext_resource type="PackedScene" uid="uid://cglq57sgw1x0x" path="res://scenes/jump_spike.tscn" id="6_qyvms"]
+[ext_resource type="PackedScene" path="res://scenes/dart_shooter.tscn" id="5_kli11"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="6_qyvms"]
+[ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="7_y1801"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7teia"]
 size = Vector2(14, 27)
@@ -562,7 +563,11 @@ scale = Vector2(-1, 1)
 [node name="JumpSpike" parent="." instance=ExtResource("6_qyvms")]
 position = Vector2(-184, -40)
 
+[node name="SkeletonNPC" parent="." instance=ExtResource("7_y1801")]
+position = Vector2(-48, -45)
+
+[node name="SkeletonNPC2" parent="." instance=ExtResource("7_y1801")]
+position = Vector2(94, 2)
+
 [connection signal="area_entered" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_entered"]
 [connection signal="area_exited" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_exited"]
-[connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
-[connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
