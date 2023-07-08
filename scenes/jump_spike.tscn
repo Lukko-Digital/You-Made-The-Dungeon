@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cglq57sgw1x0x"]
+[gd_scene load_steps=5 format=3 uid="uid://cobsd5flmdxx"]
 
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_ujkx4"]
 
@@ -38,7 +38,7 @@ shape = SubResource("RectangleShape2D_lwjem")
 texture = ExtResource("1_ujkx4")
 hframes = 4
 region_enabled = true
-region_rect = Rect2(0.0820184, 159.755, 62.9465, 16.3292)
+region_rect = Rect2(-0.0815573, 207.945, 64.3221, 16.2157)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spike"
