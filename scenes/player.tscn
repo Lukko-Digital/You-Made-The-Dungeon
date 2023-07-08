@@ -286,5 +286,4 @@ shape = SubResource("RectangleShape2D_cwm3s")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6l6e3")
 
-[connection signal="body_entered" from="TrapCollider" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="TrapCollider" to="." method="_on_area_2d_body_exited"]
