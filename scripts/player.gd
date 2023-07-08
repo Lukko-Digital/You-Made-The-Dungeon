@@ -49,25 +49,29 @@ func handle_movement_run(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, direction * RUN_SPEED * run_speed_coeff, accel * accel_coeff * delta)
 
-var buffer_time = 0;
+var last_jump_input: float = INF
+var last_grounded: float = INF
+
+var is_jumping: bool
 
 func handle_movement_jump(delta: float) -> void:
+	last_jump_input += delta
+	last_grounded += delta
 	
-	if buffer_time > 0:
-		if is_on_floor():
-			velocity += Vector2.UP * JUMP_SPEED
-			buffer_time = 0
-		else:
-			buffer_time -= delta
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity += Vector2.UP * JUMP_SPEED
-		else:
-			buffer_time = COYOTE_TIME_SECS
-			
+		last_jump_input = 0.0
+	
+	if is_on_floor():
+		last_grounded = 0.0
+		is_jumping = false
 		
-	if velocity.y < -100 and Input.is_action_just_released("jump"):
-		velocity.y = -100
+	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
+		velocity.y = -JUMP_SPEED
+	else:
+		gravity_coeff = 1.0
+		
+	if Input.is_action_just_released("jump"):
+		velocity.y = max(velocity.y, -100)
 
 func handle_animation():
 	# Determine input direction
