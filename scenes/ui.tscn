@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgv73nwkrqegy"]
+[gd_scene load_steps=3 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
-[ext_resource type="FontFile" uid="uid://ck41i4ecebcs2" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
+[ext_resource type="FontFile" uid="uid://c1t3nidwmcnq4" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_jwmxf")
@@ -52,7 +52,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialogueBox" type="Control" parent="HBoxContainer/VBoxContainer/NinePatchRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
