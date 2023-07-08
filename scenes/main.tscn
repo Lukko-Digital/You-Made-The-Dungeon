@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc3qsvy1xf5x5"]
+[gd_scene load_steps=8 format=3 uid="uid://bc3qsvy1xf5x5"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_gh0mp"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_ad5a3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3n73"]
+size = Vector2(14, 25)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_ad5a3")
@@ -413,7 +416,8 @@ texture = ExtResource("2_ad5a3")
 0:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_cfcqt"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "brick"
 terrain_set_0/terrain_0/color = Color(0.431373, 0.447059, 0.415686, 1)
@@ -422,11 +426,36 @@ terrain_set_1/terrain_0/name = "dirt"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1i4d"]
+texture = ExtResource("2_ad5a3")
+4:6/0 = 0
+4:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:6/0/physics_layer_0/angular_velocity = 0.0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0 = 0
+5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:6/0/physics_layer_0/angular_velocity = 0.0
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:7/0 = 0
+5:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:7/0/physics_layer_0/angular_velocity = 0.0
+5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:7/0 = 0
+4:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:7/0/physics_layer_0/angular_velocity = 0.0
+4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_bnh6n"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_h1i4d")
+
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_gh0mp")]
 z_index = 5
 position = Vector2(0, -14)
+collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(0, -52)
@@ -436,6 +465,14 @@ position_smoothing_speed = 10.0
 drag_vertical_enabled = true
 drag_top_margin = 0.6
 drag_bottom_margin = 0.0
+
+[node name="Area2D" type="Area2D" parent="player"]
+collision_layer = 5
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_v3n73")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cfcqt")
@@ -456,3 +493,10 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 10
 layer_2/tile_data = PackedInt32Array(-393212, 6, 6, -393211, 65542, 6, -458753, 196614, 6, -524288, 393222, 6, -458752, 393222, 7, -524287, 458758, 6, -458751, 458758, 7, -917500, 131078, 6, -393196, 131078, 6, -393189, 6, 6, -393188, 65542, 6, -655325, 262150, 6, -589789, 262150, 7, -655324, 327686, 6, -589788, 327686, 7, -917461, 393222, 6, -851925, 393222, 7, -917460, 458758, 6, -851924, 458758, 7, -655321, 131078, 6, -1441758, 131078, 6, -327667, 196614, 4, -327666, 393222, 4, -327665, 196614, 4, -327664, 131078, 4, -327663, 196614, 4, -327660, 589830, 4, -327657, 196614, 4, -327656, 720902, 4, -327655, 655366, 4, -327652, 65542, 4, -327648, 720902, 4, -589781, 589830, 4, -589778, 6, 4, -917468, 131078, 4, -327647, 65542, 4, -327645, 327686, 4, -327658, 458758, 4, -655356, 524294, 4, -851968, 655366, 4, -786433, 196614, 4, -1114108, 131078, 4, -1114106, 65542, 4, -1114107, 589830, 4, -262134, 589830, 4, -1703902, 524294, 4, -1703900, 327686, 4, -917469, 720902, 4, -1769439, 131078, 4)
+
+[node name="TileMapSpikes" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bnh6n")
+format = 2
+layer_0/tile_data = PackedInt32Array(-393243, 262144, 6, -327707, 262144, 7, -393242, 327680, 6, -327706, 327680, 7)
+
+[connection signal="body_entered" from="player/Area2D" to="player" method="_on_area_2d_body_entered"]
