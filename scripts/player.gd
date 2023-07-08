@@ -23,6 +23,8 @@ const COYOTE_TIME_SECS: float = 0.1
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
 var climbing: bool = false
+var on_dart: bool = false
+var jumping_off_dart: bool = false
 
 
 func _physics_process(delta: float) -> void:
@@ -80,6 +82,10 @@ func handle_movement_jump(delta: float) -> void:
 	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
+	elif on_dart and last_jump_input <= COYOTE_TIME_SECS:
+		velocity.y = -JUMP_SPEED
+		is_jumping = true
+		jumping_off_dart = true
 	else:
 		gravity_coeff = 1.0
 		
@@ -90,22 +96,22 @@ func handle_animation():
 	# Determine input direction
 	var direction = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
-	# Scale character horizontally to make them face the direction of input at all times
-	if direction != 0:
-		sprite_2d["scale"] = Vector2(sign(direction), 1)
+	# Scale character horizontally to make them face the direction of velocity at all times
+	if velocity.x != 0:
+		sprite_2d["scale"] = Vector2(sign(velocity.x), 1)
 	
 	# Jumping Case
 	if not is_on_floor():
-		animation_tree["parameters/conditions/grounded"] = false
-		animation_tree["parameters/conditions/airborne"] = true
-		animation_tree["parameters/land/blend_position"] = ((abs(direction)-.5)*2)
-		animation_tree["parameters/airborne/blend_position"] = Vector2((((abs(velocity.x)/RUN_SPEED)-.5)*2), sign(velocity.y)) # Expression for the first number in this vector 2 turns our x velocity into a number where -1 represents not moving, while 1 represents full speed.
+		animation_tree["parameters/default/conditions/grounded"] = false
+		animation_tree["parameters/default/conditions/airborne"] = true
+		animation_tree["parameters/default/land/blend_position"] = ((abs(direction)-.5)*2)
+		animation_tree["parameters/default/airborne/blend_position"] = Vector2((((abs(velocity.x)/RUN_SPEED)-.5)*2), sign(velocity.y)) # Expression for the first number in this vector 2 turns our x velocity into a number where -1 represents not moving, while 1 represents full speed.
 		return # Grounded case is not executed
 	
 	# Grounded Case
-	animation_tree["parameters/grounded/blend_position"] = (((abs(velocity.x)/RUN_SPEED)-.5)*2)
-	animation_tree["parameters/conditions/grounded"] = true
-	animation_tree["parameters/conditions/airborne"] = false
+	animation_tree["parameters/default/grounded/blend_position"] = (((abs(velocity.x)/RUN_SPEED)-.5)*2)
+	animation_tree["parameters/default/conditions/grounded"] = true
+	animation_tree["parameters/default/conditions/airborne"] = false
 
 func handle_spikes(body):
 	if body.name == "Spikes":
@@ -114,6 +120,12 @@ func handle_spikes(body):
 		var spike_animation = body.get_node("AnimationPlayer")
 		if abs(spike_animation.current_animation_position - 2.01) < 0.1:
 			velocity.y = -JUMP_SPEED * 2
+			
+func off_dart(body):
+	animation_tree["parameters/conditions/shot_head"] = false
+	animation_tree["parameters/conditions/shot_body"] = false
+	animation_tree["parameters/conditions/not_shot"] = true
+	body.queue_free()
 
 func handle_trap_collisions():
 	for body in LegsCollider.get_overlapping_bodies():
@@ -122,23 +134,32 @@ func handle_trap_collisions():
 	for body in ChestCollider.get_overlapping_bodies():
 		handle_spikes(body)
 		if body.is_in_group("Darts"):
-			if not is_on_wall():
-				print("chest")
+			if not is_on_wall() and not jumping_off_dart:
+				animation_tree["parameters/conditions/shot_body"] = true
+				animation_tree["parameters/conditions/not_shot"] = false
 				velocity = body.linear_velocity
 				global_position.y = body.global_position.y - 1
 				body.visible = false
+				on_dart = true
 			else:
-				body.queue_free()
+				off_dart(body)
+				on_dart = false
+				jumping_off_dart = false
 	
 	for body in HeadCollider.get_overlapping_bodies():
 		handle_spikes(body)
 		if body.is_in_group("Darts"):
-			if not is_on_wall():
+			if not is_on_wall() and not jumping_off_dart:
+				animation_tree["parameters/conditions/shot_head"] = true
+				animation_tree["parameters/conditions/not_shot"] = false
 				velocity = body.linear_velocity
 				global_position.y = body.global_position.y - 1
 				body.visible = false
+				on_dart = true
 			else:
-				body.queue_free()
+				off_dart(body)
+				on_dart = false
+				jumping_off_dart = false
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":

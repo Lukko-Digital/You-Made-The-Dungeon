@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://6ccfrhghlje3"]
+[gd_scene load_steps=45 format=3 uid="uid://6ccfrhghlje3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_o2u3n"]
 [ext_resource type="Texture2D" uid="uid://bm77xumgbjesy" path="res://assets/sprites/skelly.png" id="2_7olcr"]
@@ -134,6 +134,36 @@ tracks/0/keys = {
 "values": [13, 14, 15, 16, 11, 12]
 }
 
+[sub_resource type="Animation" id="Animation_sl1op"]
+resource_name = "shot_in_body"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
+
+[sub_resource type="Animation" id="Animation_5r07o"]
+resource_name = "shot_in_head"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
 [sub_resource type="Animation" id="Animation_txmih"]
 resource_name = "wallslide"
 tracks/0/type = "value"
@@ -159,6 +189,8 @@ _data = {
 "land": SubResource("Animation_ovl42"),
 "land_side": SubResource("Animation_n0gy3"),
 "run": SubResource("Animation_g7wdr"),
+"shot_in_body": SubResource("Animation_sl1op"),
+"shot_in_head": SubResource("Animation_5r07o"),
 "wallslide": SubResource("Animation_txmih")
 }
 
@@ -228,22 +260,57 @@ advance_condition = &"grounded"
 advance_mode = 2
 advance_condition = &"airborne"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i66yu"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqh2p"]
-states/End/position = Vector2(564.222, -61.3333)
-states/Start/position = Vector2(563.333, 120.043)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ysrtu"]
+states/End/position = Vector2(652, -17)
 states/airborne/node = SubResource("AnimationNodeBlendSpace2D_vps1p")
-states/airborne/position = Vector2(972.951, -62)
+states/airborne/position = Vector2(972.593, -66)
 states/grounded/node = SubResource("AnimationNodeBlendSpace1D_jl7qi")
 states/grounded/position = Vector2(762, 119.745)
 states/land/node = SubResource("AnimationNodeBlendSpace1D_j52do")
 states/land/position = Vector2(972.593, 121.037)
-transitions = ["land", "airborne", SubResource("AnimationNodeStateMachineTransition_jrx5a"), "airborne", "land", SubResource("AnimationNodeStateMachineTransition_ggyq0"), "land", "grounded", SubResource("AnimationNodeStateMachineTransition_1xpga"), "grounded", "airborne", SubResource("AnimationNodeStateMachineTransition_w5f0o"), "Start", "grounded", SubResource("AnimationNodeStateMachineTransition_i66yu")]
-graph_offset = Vector2(124, -158)
+transitions = ["land", "airborne", SubResource("AnimationNodeStateMachineTransition_jrx5a"), "airborne", "land", SubResource("AnimationNodeStateMachineTransition_ggyq0"), "land", "grounded", SubResource("AnimationNodeStateMachineTransition_1xpga"), "grounded", "airborne", SubResource("AnimationNodeStateMachineTransition_w5f0o")]
+graph_offset = Vector2(365, -121)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_np752"]
+animation = &"shot_in_body"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mjcx1"]
+animation = &"shot_in_head"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u4ykd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kna27"]
+advance_mode = 2
+advance_condition = &"shot_body"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6x45d"]
+advance_mode = 2
+advance_condition = &"shot_head"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dv7x4"]
+advance_mode = 2
+advance_condition = &"not_shot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hmjxj"]
+advance_mode = 2
+advance_condition = &"not_shot"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqh2p"]
+states/End/position = Vector2(465.222, -76.3333)
+states/Start/position = Vector2(614.333, 40.043)
+states/default/node = SubResource("AnimationNodeStateMachine_ysrtu")
+states/default/position = Vector2(806.395, 85.2607)
+states/shot_in_body/node = SubResource("AnimationNodeAnimation_np752")
+states/shot_in_body/position = Vector2(938, -56)
+states/shot_in_head/node = SubResource("AnimationNodeAnimation_mjcx1")
+states/shot_in_head/position = Vector2(1113, 60)
+transitions = ["Start", "default/grounded", SubResource("AnimationNodeStateMachineTransition_u4ykd"), "default", "shot_in_body", SubResource("AnimationNodeStateMachineTransition_kna27"), "default", "shot_in_head", SubResource("AnimationNodeStateMachineTransition_6x45d"), "shot_in_body", "default/grounded", SubResource("AnimationNodeStateMachineTransition_dv7x4"), "shot_in_head", "default/grounded", SubResource("AnimationNodeStateMachineTransition_hmjxj")]
+graph_offset = Vector2(250, -127)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8mnhr"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_k1wgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6e3"]
 size = Vector2(14, 27)
@@ -263,7 +330,6 @@ script = ExtResource("1_o2u3n")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
 hframes = 22
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -275,11 +341,16 @@ tree_root = SubResource("AnimationNodeStateMachine_fqh2p")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_8mnhr")
-parameters/conditions/airborne = false
-parameters/conditions/grounded = false
-parameters/airborne/blend_position = Vector2(-0.557285, 0.301397)
-parameters/grounded/blend_position = 0
-parameters/land/blend_position = 0
+parameters/conditions/not_shot = false
+parameters/conditions/shot_body = false
+parameters/conditions/shot_head = false
+parameters/default/playback = SubResource("AnimationNodeStateMachinePlayback_k1wgq")
+parameters/default/conditions/airborne = false
+parameters/default/conditions/grounded = false
+parameters/default/conditions/not_shot = false
+parameters/default/airborne/blend_position = Vector2(0, 0)
+parameters/default/grounded/blend_position = 0
+parameters/default/land/blend_position = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
