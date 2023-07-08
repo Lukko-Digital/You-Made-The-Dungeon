@@ -10,7 +10,10 @@ func _ready():
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
 	
-	assert(FileAccess.file_exists(DIALOGUE_PATH), "Dialog file at `res://assets/dialogue/dialogue.json` does not exist")
+	assert(FileAccess.file_exists(DIALOGUE_PATH), "Dialog file at %s does not exist" % DIALOGUE_PATH)
+	
+	var json_str = FileAccess.open(DIALOGUE_PATH, FileAccess.READ).get_as_text()
+	var dialog = JSON.parse_string(json_str)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
