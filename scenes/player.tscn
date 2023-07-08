@@ -1,10 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://6ccfrhghlje3"]
+[gd_scene load_steps=33 format=3 uid="uid://6ccfrhghlje3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_o2u3n"]
 [ext_resource type="Texture2D" uid="uid://bm77xumgbjesy" path="res://assets/sprites/skelly.png" id="2_7olcr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6e3"]
-size = Vector2(14, 27)
 
 [sub_resource type="Animation" id="Animation_evxk6"]
 resource_name = "fall"
@@ -248,16 +245,18 @@ graph_offset = Vector2(124, -158)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8mnhr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwm3s"]
+size = Vector2(14, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6e3"]
+size = Vector2(14, 27)
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_o2u3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
 hframes = 19
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_6l6e3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -274,3 +273,17 @@ parameters/conditions/grounded = false
 parameters/airborne/blend_position = Vector2(-0.557285, 0.301397)
 parameters/grounded/blend_position = 0
 parameters/land/blend_position = 0
+
+[node name="TrapCollider" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TrapCollider"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_cwm3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_6l6e3")
+
+[connection signal="body_entered" from="TrapCollider" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="TrapCollider" to="." method="_on_area_2d_body_exited"]

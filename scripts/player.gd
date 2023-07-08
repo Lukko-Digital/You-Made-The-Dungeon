@@ -8,10 +8,13 @@ const RUN_ACCEL_AIR_FACTOR: float = 0.75
 const JUMP_SPEED: float = 350
 const TERMINAL_FALL_SPEED: float = 400
 
+const SPIKE_JUMP_SPEED: float = 500
+
 const COYOTE_TIME_SECS: float = 0.1
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var TrapCollider: Area2D = $TrapCollider
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
@@ -27,6 +30,7 @@ func handle_movement(delta: float) -> void:
 	handle_movement_gravity(delta)
 	handle_movement_run(delta)
 	handle_movement_jump(delta)
+	handle_trap_collisions()
 
 	move_and_slide()
 
@@ -67,10 +71,11 @@ func handle_movement_jump(delta: float) -> void:
 		
 	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
+		is_jumping = true
 	else:
 		gravity_coeff = 1.0
 		
-	if Input.is_action_just_released("jump"):
+	if Input.is_action_just_released("jump") and is_jumping:
 		velocity.y = max(velocity.y, -100)
 
 func handle_animation():
@@ -94,10 +99,14 @@ func handle_animation():
 	animation_tree["parameters/conditions/grounded"] = true
 	animation_tree["parameters/conditions/airborne"] = false
 
-
-func _on_area_2d_body_entered(body):
-	if body.name == "Spikes":
-		in_spikes = true
+func handle_trap_collisions():
+	for body in TrapCollider.get_overlapping_bodies():
+		if body.name == "Spikes":
+			in_spikes = true
+		elif body.is_in_group("JumpSpikes"):
+			var spike_animation = body.get_node("AnimationPlayer")
+			if abs(spike_animation.current_animation_position - 2.01) < 0.1:
+				velocity.y = -JUMP_SPEED * 2
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":
