@@ -397,6 +397,7 @@ script = ExtResource("1_o2u3n")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
 hframes = 22
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -448,6 +449,8 @@ collision_mask = 4
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_21qqj")
 
+[connection signal="body_entered" from="LegsCollider" to="." method="_on_legs_collider_body_entered"]
 [connection signal="body_exited" from="LegsCollider" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="ChestCollider" to="." method="_on_chest_collider_body_entered"]
 [connection signal="body_exited" from="ChestCollider" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_exited" from="HeadCollider" to="." method="_on_area_2d_body_exited"]
