@@ -18,7 +18,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
@@ -26,7 +26,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
 [node name="DialoguePrompt" type="Label" parent="HBoxContainer/VBoxContainer/NinePatchRect"]
@@ -52,7 +52,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialogueBox" type="Control" parent="HBoxContainer/VBoxContainer/NinePatchRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -254.0
-offset_top = -39.0
-offset_right = 254.0
-offset_bottom = 39.0
+offset_left = -400.0
+offset_top = -60.0
+offset_right = 400.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -87,18 +86,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.5
-offset_top = -33.0
-offset_right = 251.5
-offset_bottom = 33.0
+offset_left = -349.0
+offset_top = -48.5
+offset_right = 349.0
+offset_bottom = 48.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_exex5")
-theme_override_font_sizes/font_size = 50
-text = "wow this a text box"
+theme_override_font_sizes/font_size = 40
+text = "zao shang hao zong guo xian zai wo you bing qi lin wo hen xi huan bing qi lin"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
