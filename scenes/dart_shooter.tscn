@@ -26,7 +26,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_5mr6g"]
 resource_name = "shoot"
 length = 0.7
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,8 +71,8 @@ transitions = ["Start", "blink", SubResource("AnimationNodeStateMachineTransitio
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_hu5x8"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_vk3yp"]
-b = Vector2(-175, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16hek"]
+size = Vector2(171, 13)
 
 [node name="DartShooter" type="StaticBody2D"]
 script = ExtResource("1_p7qbr")
@@ -95,13 +94,18 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_hd4v3")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_hu5x8")
 parameters/conditions/shoot = false
 
 [node name="LineOfSight" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
-position = Vector2(-9, 0)
-shape = SubResource("SegmentShape2D_vk3yp")
+position = Vector2(-95.5, 0)
+shape = SubResource("RectangleShape2D_16hek")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="LineOfSight" to="." method="_on_line_of_sight_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
