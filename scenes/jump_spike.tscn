@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cglq57sgw1x0x"]
+
+[ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_ujkx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwjem"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_rsx1p"]
+resource_name = "spike"
+length = 2.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3l6oj"]
+_data = {
+"spike": SubResource("Animation_rsx1p")
+}
+
+[node name="JumpSpike" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lwjem")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ujkx4")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0.0820184, 159.755, 62.9465, 16.3292)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spike"
+libraries = {
+"": SubResource("AnimationLibrary_3l6oj")
+}
