@@ -516,5 +516,7 @@ scale = Vector2(-1, 1)
 [node name="JumpSpike" parent="." instance=ExtResource("6_qyvms")]
 position = Vector2(-184, -40)
 
+[connection signal="area_entered" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_entered"]
+[connection signal="area_exited" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_exited"]
 [connection signal="body_entered" from="NPC" to="ui" method="_on_npc_body_entered"]
 [connection signal="body_exited" from="NPC" to="ui" method="_on_npc_body_exited"]
