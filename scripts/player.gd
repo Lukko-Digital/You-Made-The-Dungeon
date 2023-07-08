@@ -16,7 +16,9 @@ const COYOTE_TIME_SECS: float = 0.1
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var TrapCollider: Area2D = $TrapCollider
+@onready var LegsCollider: Area2D = $LegsCollider
+@onready var ChestCollider: Area2D = $ChestCollider
+@onready var HeadCollider: Area2D = $HeadCollider
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
@@ -105,17 +107,35 @@ func handle_animation():
 	animation_tree["parameters/conditions/grounded"] = true
 	animation_tree["parameters/conditions/airborne"] = false
 
-func handle_trap_collisions():
-	for body in TrapCollider.get_overlapping_bodies():
-		if body.name == "Spikes":
+func handle_spikes(body):
+	if body.name == "Spikes":
 			climbing = true
-		elif body.is_in_group("JumpSpikes"):
-			var spike_animation = body.get_node("AnimationPlayer")
-			if abs(spike_animation.current_animation_position - 2.01) < 0.1:
-				velocity.y = -JUMP_SPEED * 2
-		elif body.is_in_group("Darts"):
+	elif body.is_in_group("JumpSpikes"):
+		var spike_animation = body.get_node("AnimationPlayer")
+		if abs(spike_animation.current_animation_position - 2.01) < 0.1:
+			velocity.y = -JUMP_SPEED * 2
+
+func handle_trap_collisions():
+	for body in LegsCollider.get_overlapping_bodies():
+		handle_spikes(body)
+
+	for body in ChestCollider.get_overlapping_bodies():
+		handle_spikes(body)
+		if body.is_in_group("Darts"):
+			if not is_on_wall():
+				print("chest")
+				velocity = body.linear_velocity
+				global_position.y = body.global_position.y - 1
+				body.visible = false
+			else:
+				body.queue_free()
+	
+	for body in HeadCollider.get_overlapping_bodies():
+		handle_spikes(body)
+		if body.is_in_group("Darts"):
 			if not is_on_wall():
 				velocity = body.linear_velocity
+				global_position.y = body.global_position.y - 1
 				body.visible = false
 			else:
 				body.queue_free()
@@ -124,4 +144,3 @@ func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":
 		climbing = false
 		gravity_coeff = 1
-
