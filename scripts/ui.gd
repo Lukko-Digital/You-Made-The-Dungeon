@@ -6,6 +6,7 @@ var in_interaction = false
 const DIALOGUE_PATH: String = "res://assets/dialogue/dialogue.json"
 var dialogue
 var num_interactions
+var current_dialogue_idx = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,12 +27,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and current_interactable_npc:
-		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.show()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
-		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/Label.text = current_interactable_npc
+#		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/Label.text = 'asdf'
 		load_npc_dialogue(current_interactable_npc)
 		if not in_interaction:
-			num_interactions[current_interactable_npc] += 1
 			in_interaction = true
 
 func _on_npc_dialogue_collider_area_entered(area):
@@ -44,16 +43,30 @@ func _on_npc_dialogue_collider_area_exited(area):
 	if area.is_in_group('npc'):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
+		current_dialogue_idx = 0
+		num_interactions[current_interactable_npc] += 1
 		current_interactable_npc = null
 		in_interaction = false
+		
 
 func load_npc_dialogue(name):
+	var dialogue_list = get_dialogue_list(name)
+	handle_dialogue_display(dialogue_list)
+	
+func get_dialogue_list(name):
 	var dialogue_options = dialogue[name]
 	var interaction_limits = dialogue_options.keys()
-	var dialogue_list
 	interaction_limits.reverse()
 	for limit in interaction_limits:
 		if num_interactions[name] >= int(limit):
-			dialogue_list = dialogue_options[str(limit)]
-			break
-	print(dialogue_list)
+			return dialogue_options[str(limit)]
+
+func handle_dialogue_display(dialogue_list):
+	if current_dialogue_idx >= len(dialogue_list):
+		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
+		return
+	
+	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.show()
+	$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/Label.text = dialogue_list[current_dialogue_idx]
+	
+	current_dialogue_idx += 1
