@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-var npc_interaction_available = false
+var current_interactable_npc = null
+var in_interaction = false
 
 const DIALOGUE_PATH: String = "res://assets/dialogue/dialogue.json"
 var dialog
@@ -21,24 +22,29 @@ func _ready():
 	num_interactions = dialog.duplicate()
 	for name in num_interactions.keys():
 		num_interactions[name] = 0
-		
-	print(num_interactions)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("interact") and npc_interaction_available:
+	print(num_interactions)
+	if Input.is_action_just_pressed("interact") and current_interactable_npc:
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.show()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
+		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox/Label.text = current_interactable_npc
+		if not in_interaction:
+			num_interactions[current_interactable_npc] += 1
+			in_interaction = true
 
 func _on_npc_dialogue_collider_area_entered(area):
 	if area.is_in_group('npc'):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.show()
-		npc_interaction_available = true
+		current_interactable_npc = area.name
 
 
 func _on_npc_dialogue_collider_area_exited(area):
 	if area.is_in_group('npc'):
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialoguePrompt.hide()
 		$HBoxContainer/VBoxContainer/NinePatchRect/DialogueBox.hide()
-		npc_interaction_available = false
+		current_interactable_npc = null
+		in_interaction = false
+
+#func load_npc_dialogue(name):
