@@ -431,19 +431,18 @@ texture = ExtResource("2_ad5a3")
 4:6/0 = 0
 4:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:6/0/physics_layer_0/angular_velocity = 0.0
-4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, -8)
 5:6/0 = 0
 5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:6/0/physics_layer_0/angular_velocity = 0.0
-5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, 8, -8, 8)
 5:7/0 = 0
 5:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:7/0/physics_layer_0/angular_velocity = 0.0
-5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:7/0 = 0
 4:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:7/0/physics_layer_0/angular_velocity = 0.0
-4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, -8)
 
 [sub_resource type="TileSet" id="TileSet_bnh6n"]
 physics_layer_0/collision_layer = 4
@@ -494,9 +493,10 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 10
 layer_2/tile_data = PackedInt32Array(-393212, 6, 6, -393211, 65542, 6, -458753, 196614, 6, -524288, 393222, 6, -458752, 393222, 7, -524287, 458758, 6, -458751, 458758, 7, -917500, 131078, 6, -393196, 131078, 6, -393189, 6, 6, -393188, 65542, 6, -655325, 262150, 6, -589789, 262150, 7, -655324, 327686, 6, -589788, 327686, 7, -917461, 393222, 6, -851925, 393222, 7, -917460, 458758, 6, -851924, 458758, 7, -655321, 131078, 6, -1441758, 131078, 6, -327667, 196614, 4, -327666, 393222, 4, -327665, 196614, 4, -327664, 131078, 4, -327663, 196614, 4, -327660, 589830, 4, -327657, 196614, 4, -327656, 720902, 4, -327655, 655366, 4, -327652, 65542, 4, -327648, 720902, 4, -589781, 589830, 4, -589778, 6, 4, -917468, 131078, 4, -327647, 65542, 4, -327645, 327686, 4, -327658, 458758, 4, -655356, 524294, 4, -851968, 655366, 4, -786433, 196614, 4, -1114108, 131078, 4, -1114106, 65542, 4, -1114107, 589830, 4, -262134, 589830, 4, -1703902, 524294, 4, -1703900, 327686, 4, -917469, 720902, 4, -1769439, 131078, 4)
 
-[node name="TileMapSpikes" type="TileMap" parent="."]
+[node name="Spikes" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bnh6n")
 format = 2
 layer_0/tile_data = PackedInt32Array(-393243, 262144, 6, -327707, 262144, 7, -393242, 327680, 6, -327706, 327680, 7)
 
 [connection signal="body_entered" from="player/Area2D" to="player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="player/Area2D" to="player" method="_on_area_2d_body_exited"]
