@@ -42,6 +42,7 @@ func handle_movement(delta: float) -> void:
 	handle_movement_run(delta)
 	handle_movement_jump(delta)
 	handle_trap_collisions(delta)
+	handle_vine_climbing()
 
 	move_and_slide()
 
@@ -139,11 +140,11 @@ func handle_animation():
 	animation_tree["parameters/default/conditions/grounded"] = true
 	animation_tree["parameters/default/conditions/airborne"] = false
 
-func handle_climbing(body):
-	#"Spikes" is the tilemap with the stationary spikes
-	if body.name == "Vines" and velocity.y > 0:
-		is_on_vines = true
-		animation_tree["parameters/conditions/climb"] = true
+func handle_vine_climbing():
+	for body in ChestCollider.get_overlapping_bodies():
+		if body.name == "Vines" and velocity.y > 0:
+			is_on_vines = true
+			animation_tree["parameters/conditions/climb"] = true
 		animation_tree["parameters/conditions/not_climb"] = false
 		is_jumping = false
 
@@ -183,7 +184,6 @@ func handle_jump_spike_collision():
 func handle_dart_collision():
 	#body can collide with spikes and darts (dart code is reused but only changed for which animation to run
 	for body in ChestCollider.get_overlapping_bodies():
-		handle_climbing(body)
 		if body.is_in_group("Darts"):
 			if (not is_on_wall() or not is_on_dart) and not jumping_off_dart:
 				#Changes animation
