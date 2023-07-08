@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjgg86yjdqtp7"]
+
+[ext_resource type="Script" path="res://scripts/dart_shooter.gd" id="1_p7qbr"]
+[ext_resource type="Texture2D" uid="uid://ck2ts155dtnfv" path="res://assets/sprites/dart_shooter.png" id="2_c4fe4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gkxd"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_ou8by"]
+resource_name = "blink"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_5mr6g"]
+resource_name = "shoot"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5ubn"]
+_data = {
+"blink": SubResource("Animation_ou8by"),
+"shoot": SubResource("Animation_5mr6g")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2mbmt"]
+animation = &"blink"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wn7sb"]
+animation = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kujs1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o1hqq"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bii1d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hd4v3"]
+states/blink/node = SubResource("AnimationNodeAnimation_2mbmt")
+states/blink/position = Vector2(367, 75)
+states/shoot/node = SubResource("AnimationNodeAnimation_wn7sb")
+states/shoot/position = Vector2(513, 66)
+transitions = ["Start", "blink", SubResource("AnimationNodeStateMachineTransition_kujs1"), "blink", "shoot", SubResource("AnimationNodeStateMachineTransition_o1hqq"), "shoot", "blink", SubResource("AnimationNodeStateMachineTransition_bii1d")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_hu5x8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16hek"]
+size = Vector2(171, 13)
+
+[node name="DartShooter" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_p7qbr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c4fe4")
+hframes = 5
+region_rect = Rect2(0, 0, 80, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1gkxd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_a5ubn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_hd4v3")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_hu5x8")
+parameters/conditions/shoot = false
+
+[node name="LineOfSight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
+position = Vector2(-95.5, 0)
+shape = SubResource("RectangleShape2D_16hek")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="LineOfSight" to="." method="_on_line_of_sight_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

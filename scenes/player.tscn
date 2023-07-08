@@ -1,10 +1,39 @@
-[gd_scene load_steps=32 format=3 uid="uid://6ccfrhghlje3"]
+[gd_scene load_steps=54 format=3 uid="uid://6ccfrhghlje3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_o2u3n"]
 [ext_resource type="Texture2D" uid="uid://bm77xumgbjesy" path="res://assets/sprites/skelly.png" id="2_7olcr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6e3"]
-size = Vector2(14, 27)
+[sub_resource type="Animation" id="Animation_3of58"]
+resource_name = "climb_1"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_o22ee"]
+resource_name = "climb_2"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
 
 [sub_resource type="Animation" id="Animation_evxk6"]
 resource_name = "fall"
@@ -137,6 +166,36 @@ tracks/0/keys = {
 "values": [13, 14, 15, 16, 11, 12]
 }
 
+[sub_resource type="Animation" id="Animation_sl1op"]
+resource_name = "shot_in_body"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
+
+[sub_resource type="Animation" id="Animation_5r07o"]
+resource_name = "shot_in_head"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
 [sub_resource type="Animation" id="Animation_txmih"]
 resource_name = "wallslide"
 tracks/0/type = "value"
@@ -154,6 +213,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_poieu"]
 _data = {
+"climb_1": SubResource("Animation_3of58"),
+"climb_2": SubResource("Animation_o22ee"),
 "fall": SubResource("Animation_evxk6"),
 "fall_side": SubResource("Animation_ki8aj"),
 "idle": SubResource("Animation_sbufx"),
@@ -162,8 +223,16 @@ _data = {
 "land": SubResource("Animation_ovl42"),
 "land_side": SubResource("Animation_n0gy3"),
 "run": SubResource("Animation_g7wdr"),
+"shot_in_body": SubResource("Animation_sl1op"),
+"shot_in_head": SubResource("Animation_5r07o"),
 "wallslide": SubResource("Animation_txmih")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r47mo"]
+animation = &"climb_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lvne"]
+animation = &"climb_2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fsd8t"]
 animation = &"fall"
@@ -231,22 +300,95 @@ advance_condition = &"grounded"
 advance_mode = 2
 advance_condition = &"airborne"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i66yu"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqh2p"]
-states/End/position = Vector2(564.222, -61.3333)
-states/Start/position = Vector2(563.333, 120.043)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ysrtu"]
+states/End/position = Vector2(652, -17)
 states/airborne/node = SubResource("AnimationNodeBlendSpace2D_vps1p")
-states/airborne/position = Vector2(972.951, -62)
+states/airborne/position = Vector2(972.593, -66)
 states/grounded/node = SubResource("AnimationNodeBlendSpace1D_jl7qi")
 states/grounded/position = Vector2(762, 119.745)
 states/land/node = SubResource("AnimationNodeBlendSpace1D_j52do")
 states/land/position = Vector2(972.593, 121.037)
-transitions = ["land", "airborne", SubResource("AnimationNodeStateMachineTransition_jrx5a"), "airborne", "land", SubResource("AnimationNodeStateMachineTransition_ggyq0"), "land", "grounded", SubResource("AnimationNodeStateMachineTransition_1xpga"), "grounded", "airborne", SubResource("AnimationNodeStateMachineTransition_w5f0o"), "Start", "grounded", SubResource("AnimationNodeStateMachineTransition_i66yu")]
-graph_offset = Vector2(124, -158)
+transitions = ["land", "airborne", SubResource("AnimationNodeStateMachineTransition_jrx5a"), "airborne", "land", SubResource("AnimationNodeStateMachineTransition_ggyq0"), "land", "grounded", SubResource("AnimationNodeStateMachineTransition_1xpga"), "grounded", "airborne", SubResource("AnimationNodeStateMachineTransition_w5f0o")]
+graph_offset = Vector2(365, -121)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_np752"]
+animation = &"shot_in_body"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mjcx1"]
+animation = &"shot_in_head"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u4ykd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kna27"]
+advance_mode = 2
+advance_condition = &"shot_body"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6x45d"]
+advance_mode = 2
+advance_condition = &"shot_head"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dv7x4"]
+advance_mode = 2
+advance_condition = &"not_shot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hmjxj"]
+advance_mode = 2
+advance_condition = &"not_shot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgtuw"]
+advance_mode = 2
+advance_condition = &"climb"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5l8tu"]
+advance_mode = 2
+advance_condition = &"not_climb"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_roksp"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7na0"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dh1k6"]
+advance_mode = 2
+advance_condition = &"not_climb"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqh2p"]
+states/End/position = Vector2(465.222, -76.3333)
+states/Start/position = Vector2(572.733, 84.6972)
+states/climb_1/node = SubResource("AnimationNodeAnimation_r47mo")
+states/climb_1/position = Vector2(920.4, -98.6)
+states/climb_2/node = SubResource("AnimationNodeAnimation_5lvne")
+states/climb_2/position = Vector2(1090.2, -98.44)
+states/default/node = SubResource("AnimationNodeStateMachine_ysrtu")
+states/default/position = Vector2(806.395, 85.2607)
+states/shot_in_body/node = SubResource("AnimationNodeAnimation_np752")
+states/shot_in_body/position = Vector2(1153.2, 57.6)
+states/shot_in_head/node = SubResource("AnimationNodeAnimation_mjcx1")
+states/shot_in_head/position = Vector2(1153, 138.4)
+transitions = ["Start", "default/grounded", SubResource("AnimationNodeStateMachineTransition_u4ykd"), "default", "shot_in_body", SubResource("AnimationNodeStateMachineTransition_kna27"), "default", "shot_in_head", SubResource("AnimationNodeStateMachineTransition_6x45d"), "shot_in_body", "default/grounded", SubResource("AnimationNodeStateMachineTransition_dv7x4"), "shot_in_head", "default/grounded", SubResource("AnimationNodeStateMachineTransition_hmjxj"), "default", "climb_1", SubResource("AnimationNodeStateMachineTransition_jgtuw"), "climb_1", "default/airborne", SubResource("AnimationNodeStateMachineTransition_5l8tu"), "climb_1", "climb_2", SubResource("AnimationNodeStateMachineTransition_roksp"), "climb_2", "climb_1", SubResource("AnimationNodeStateMachineTransition_d7na0"), "climb_2", "default/airborne", SubResource("AnimationNodeStateMachineTransition_dh1k6")]
+graph_offset = Vector2(540, -164)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8mnhr"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_k1wgq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6e3"]
+size = Vector2(14, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrrhh"]
+size = Vector2(14, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwm3s"]
+size = Vector2(14, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21qqj"]
+size = Vector2(14, 10)
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 3
@@ -254,12 +396,7 @@ script = ExtResource("1_o2u3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
-hframes = 19
-frame = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_6l6e3")
+hframes = 22
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -271,8 +408,46 @@ tree_root = SubResource("AnimationNodeStateMachine_fqh2p")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_8mnhr")
-parameters/conditions/airborne = false
-parameters/conditions/grounded = false
-parameters/airborne/blend_position = Vector2(-0.557285, 0.301397)
-parameters/grounded/blend_position = 0
-parameters/land/blend_position = 0
+parameters/conditions/climb = false
+parameters/conditions/moving = false
+parameters/conditions/not_climb = false
+parameters/conditions/not_shot = false
+parameters/conditions/shot_body = false
+parameters/conditions/shot_head = false
+parameters/default/playback = SubResource("AnimationNodeStateMachinePlayback_k1wgq")
+parameters/default/conditions/airborne = false
+parameters/default/conditions/grounded = false
+parameters/default/conditions/not_climb = false
+parameters/default/conditions/not_shot = false
+parameters/default/airborne/blend_position = Vector2(0, 0)
+parameters/default/grounded/blend_position = 0
+parameters/default/land/blend_position = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_6l6e3")
+
+[node name="LegsCollider" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LegsCollider"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_hrrhh")
+
+[node name="ChestCollider" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChestCollider"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_cwm3s")
+
+[node name="HeadCollider" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCollider"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_21qqj")
+
+[connection signal="body_exited" from="LegsCollider" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="ChestCollider" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="HeadCollider" to="." method="_on_area_2d_body_exited"]
