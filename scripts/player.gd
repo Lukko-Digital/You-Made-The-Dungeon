@@ -5,6 +5,8 @@ const RUN_ACCEL: float = 2000.0
 const RUN_DECEL: float = 2000.0
 const RUN_ACCEL_AIR_FACTOR: float = 0.75
 
+const CLIMB_SPEED: float = 50.0
+
 const JUMP_SPEED: float = 350
 const TERMINAL_FALL_SPEED: float = 400
 
@@ -18,8 +20,7 @@ const COYOTE_TIME_SECS: float = 0.1
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.75
 var gravity_coeff: float = 1.0
-var run_speed_coeff: float = 1.0
-var in_spikes: bool = false
+var climbing: bool = false
 
 
 func _physics_process(delta: float) -> void:
@@ -35,8 +36,7 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func handle_movement_gravity(delta: float) -> void:
-	if in_spikes:
-		run_speed_coeff = 0.25
+	if climbing:
 		gravity_coeff = 0.0
 		velocity.y = move_toward(velocity.y, 0, 500 * delta)
 	elif not is_on_floor():
@@ -51,7 +51,13 @@ func handle_movement_run(delta: float) -> void:
 	var accel = RUN_DECEL if is_decelerating else RUN_ACCEL
 	var accel_coeff = 1 if is_on_floor() else RUN_ACCEL_AIR_FACTOR
 	
-	velocity.x = move_toward(velocity.x, direction * RUN_SPEED * run_speed_coeff, accel * accel_coeff * delta)
+	var max_speed = direction * CLIMB_SPEED if climbing else direction * RUN_SPEED
+	velocity.x = move_toward(velocity.x, max_speed, accel * accel_coeff * delta)
+	
+	if climbing:
+		var y_direction := Input.get_action_strength("down") - Input.get_action_strength("up")
+		velocity.y = y_direction * CLIMB_SPEED
+		
 
 var last_jump_input: float = INF
 var last_grounded: float = INF
@@ -102,7 +108,7 @@ func handle_animation():
 func handle_trap_collisions():
 	for body in TrapCollider.get_overlapping_bodies():
 		if body.name == "Spikes":
-			in_spikes = true
+			climbing = true
 		elif body.is_in_group("JumpSpikes"):
 			var spike_animation = body.get_node("AnimationPlayer")
 			if abs(spike_animation.current_animation_position - 2.01) < 0.1:
@@ -110,7 +116,6 @@ func handle_trap_collisions():
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Spikes":
-		in_spikes = false
-		run_speed_coeff = 1
+		climbing = false
 		gravity_coeff = 1
 

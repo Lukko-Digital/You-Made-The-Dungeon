@@ -257,6 +257,7 @@ script = ExtResource("1_o2u3n")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7olcr")
 hframes = 19
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -285,5 +286,4 @@ shape = SubResource("RectangleShape2D_cwm3s")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6l6e3")
 
-[connection signal="body_entered" from="TrapCollider" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="TrapCollider" to="." method="_on_area_2d_body_exited"]
