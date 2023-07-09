@@ -98,7 +98,7 @@ func handle_movement_jump(delta: float) -> void:
 		is_jumping = false
 		dart_exit_wall_jump_available = false
 		
-	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
+	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping and not is_on_dart:
 		velocity.y = -JUMP_SPEED
 		is_jumping = true
 	elif is_on_dart and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
