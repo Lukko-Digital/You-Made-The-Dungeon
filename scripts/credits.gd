@@ -17,6 +17,5 @@ func _on_timer_timeout():
 
 func _on_fade_animation_animation_finished(anim_name):
 	if anim_name == "fade_to_black":
-		print('asdfasfadsfasdf')
 		$FadeBlack.hide()
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
