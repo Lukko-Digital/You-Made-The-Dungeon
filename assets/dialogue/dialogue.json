@@ -29,11 +29,11 @@
 		"0": [
 			{
 				"Name": "Sign",
-				"Text": "YE WHO ENTER THESE TREACHEROUS GROUNDS, PREPARE FOR THE BATTLE OF A LIFETIME."
+				"Text": "YE WHO ENTER THESE TREACHEROUS GROUNDS, PREPARE FOR THE BATTLE OF A LIFETIME!!!"
 			},
 			{
 				"Name": "Me",
-				"Text": "I can't believe they let me write that on the sign."
+				"Text": "I can't believe they let me write that."
 			}
 		],
 		"1": [
@@ -46,14 +46,30 @@
 	"SleepingKnight": {
 		"0": [
 			{
+				"Name": "Knight",
+				"Text": "zzzzzzzzzzzzzz"
+			},
+			{
 				"Name": "Me",
-				"Text": "The knight's about to wake up, better get out quick."
+				"Text": "Yup, still fast asleep."
+			},
+			{
+				"Name": "Me",
+				"Text": "Better get out of here before he wakes up..."
 			}
 		],
 		"1": [
 			{
+				"Name": "Knight",
+				"Text": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+			},
+			{
 				"Name": "Me",
-				"Text": "Yup, better get moving."
+				"Text": "Cozy guy."
+			},
+			{
+				"Name": "Me",
+				"Text": "Good thing we had that baby blanket left over after construction."
 			}
 		]
 	},
@@ -74,16 +90,24 @@
 				"Text": "Hey! What are you still doing down there?"
 			},
 			{
-				"Name": "Boss",
-				"Text": "Our meeting is starting in five minutes!"
+				"Name": "Me",
+				"Text": "Uhh..."
 			},
 			{
 				"Name": "Boss",
-				"Text": "You better get out of there before the knight wakes up!"
+				"Text": "You finished construction right?!"
+			},
+			{
+				"Name": "Boss",
+				"Text": "Now get out of there before he wakes up!"
 			},
 			{
 				"Name": "Me",
 				"Text": "..."
+			},
+			{
+				"Name": "Me",
+				"Text": "Yes sir."
 			},
 			{
 				"Name": "Phone",
@@ -91,7 +115,11 @@
 			},
 			{
 				"Name": "Me",
-				"Text": "Well, I'm right next to the elevator, I should make it in time."
+				"Text": "...Asshole... *I shake my fist at inequality*"
+			},
+			{
+				"Name": "Me",
+				"Text": "Well, I'm right next to the elevator, I should make it out in time."
 			}
 		]
 	},
@@ -124,6 +152,110 @@
 			{
 				"Name": "SkeletonNPC",
 				"Text": "fall good"
+			}
+		]
+	},
+	"Sign2": {
+		"0": [
+			{
+				"Name": "Sign",
+				"Text": "BEHOLDDDD-"
+			},
+			{
+				"Name": "Sign",
+				"Text": "LYING BEYOND YE ARE DEADLY TRAPS NOT BEKNOWNST TO THE LANDS OF MAN"
+			},
+			{
+				"Name": "Me",
+				"Text": "I'm so badass."
+			}
+		],
+		"1": [
+			{
+				"Name": "Me",
+				"Text": "My best work yet."
+			}
+		]
+	},
+	"SkeletonNPC2": {
+		"0": [
+			{
+				"Name": "Greg",
+				"Text": "yoooooo! sup skelly. watcha doin around here?"
+			},
+			{
+				"Name": "Me",
+				"Text": "Hey Greg. Could ask you the same."
+			},
+			{
+				"Name": "Greg",
+				"Text": "chill bruh, you know how its been with jess, i gotta dungeon-surf for a bit."
+			},
+			{
+				"Name": "Me",
+				"Text": "My bad, man."
+			},
+			{
+				"Name": "Greg",
+				"Text": "its okay..."
+			},
+			{
+				"Name": "Me",
+				"Text": "I just lost my keys, gotta take the long route back."
+			},
+			{
+				"Name": "Greg",
+				"Text": "AGAIN???"
+			},
+			{
+				"Name": "Me",
+				"Text": "..."
+			},
+			{
+				"Name": "Greg",
+				"Text": "never change, lil man."
+			}
+		],
+		"1": [
+			{
+				"Name": "Me",
+				"Text": "How'd you get up here?"
+			},
+			{
+				"Name": "Greg",
+				"Text": "same as you, spiked myself. best way to get around."
+			},
+			{
+				"Name": "Me",
+				"Text": "I gotta do that again??? It realllly hurts..."
+			},
+			{
+				"Name": "Greg",
+				"Text": "that's what I'M sayin. gotta call OSHA or some shit."
+			},
+			{
+				"Name": "Me",
+				"Text": "Remember what happened to Nelson?"
+			},
+			{
+				"Name": "Greg",
+				"Text": "try not to."
+			}
+		],
+		"2": [
+			{
+				"Name": "Greg",
+				"Text": "Stay cool fool."
+			},
+			{
+				"Name": "Me",
+				"Text": "See ya Greg."
+			}
+		],
+		"3": [
+			{
+				"Name": "Greg",
+				"Text": "..."
 			}
 		]
 	}
