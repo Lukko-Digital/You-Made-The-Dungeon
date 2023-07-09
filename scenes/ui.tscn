@@ -30,22 +30,6 @@ _data = {
 "idle": SubResource("Animation_wtn3e")
 }
 
-[sub_resource type="Animation" id="Animation_72qlr"]
-resource_name = "with E"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
 [sub_resource type="Animation" id="Animation_48kpm"]
 resource_name = "default"
 loop_mode = 1
@@ -60,6 +44,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_72qlr"]
+resource_name = "with E"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sr86s"]
@@ -130,6 +130,7 @@ patch_margin_bottom = 42
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
 stream = ExtResource("5_qc10x")
+volume_db = 10.597
 
 [node name="TextTimer" type="Timer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
 one_shot = true
