@@ -2186,7 +2186,7 @@ sources/0 = SubResource("TileSetAtlasSource_h1i4d")
 
 [node name="player" parent="LevelEssentials" instance=ExtResource("1_ohfwd")]
 z_index = 5
-position = Vector2(-308, -21)
+position = Vector2(-300, -16)
 collision_mask = 10
 
 [node name="Camera2D" type="Camera2D" parent="LevelEssentials/player"]
@@ -2204,6 +2204,7 @@ editor_draw_limits = true
 script = ExtResource("2_t6g6p")
 
 [node name="NPCDialogueCollider" type="Area2D" parent="LevelEssentials/player"]
+visible = false
 position = Vector2(0, 14)
 collision_mask = 9
 
@@ -2309,7 +2310,7 @@ position = Vector2(1736, -456)
 [node name="SkeletonNPC4" parent="." instance=ExtResource("7_4vcu4")]
 position = Vector2(2437, -461)
 
-[node name="Sign4" parent="." instance=ExtResource("9_g16cf")]
+[node name="Sign4" parent="." groups=["npc"] instance=ExtResource("9_g16cf")]
 position = Vector2(1929, -651)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -2376,4 +2377,6 @@ position = Vector2(2224, -497)
 [node name="Lamp8" parent="." instance=ExtResource("10_apfy8")]
 position = Vector2(2056, -375)
 
+[connection signal="area_entered" from="LevelEssentials/player/NPCDialogueCollider" to="LevelEssentials/ui" method="_on_npc_dialogue_collider_area_entered"]
+[connection signal="area_exited" from="LevelEssentials/player/NPCDialogueCollider" to="LevelEssentials/ui" method="_on_npc_dialogue_collider_area_exited"]
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
