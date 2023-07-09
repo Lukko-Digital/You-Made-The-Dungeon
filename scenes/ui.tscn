@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkhd2ngxnf8vq"]
+[gd_scene load_steps=9 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
 [ext_resource type="Texture2D" uid="uid://03o6p8phl2e2" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
 [ext_resource type="FontFile" uid="uid://c1t3nidwmcnq4" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
 [ext_resource type="Texture2D" uid="uid://dx461uwio2nym" path="res://assets/sprites/key_press.png" id="2_iarai"]
 [ext_resource type="Texture2D" uid="uid://criln7mov7pob" path="res://assets/sprites/key_press_bg.png" id="3_d1usr"]
+[ext_resource type="Texture2D" uid="uid://y30crtfokuno" path="res://icon.svg" id="6_e10rv"]
 
 [sub_resource type="Animation" id="Animation_wtn3e"]
 resource_name = "idle"
@@ -54,6 +55,7 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
 [node name="DialoguePrompt" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -77,28 +79,26 @@ libraries = {
 }
 
 [node name="DialogueBox" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
-visible = false
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 texture = ExtResource("2_6wxhs")
-patch_margin_left = 36
-patch_margin_top = 36
-patch_margin_right = 36
-patch_margin_bottom = 36
+patch_margin_left = 42
+patch_margin_top = 42
+patch_margin_right = 42
+patch_margin_bottom = 42
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -349.0
-offset_top = -48.5
-offset_right = 349.0
-offset_bottom = 48.5
+[node name="TextTimer" type="Timer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
+one_shot = true
+
+[node name="Dialogue" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
+visible = false
+layout_mode = 2
+offset_right = 1200.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_exex5")
 theme_override_font_sizes/font_size = 40
@@ -107,8 +107,67 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="TextTimer" type="Timer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
-one_shot = true
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+texture = ExtResource("6_e10rv")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Text" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_exex5")
+theme_override_font_sizes/font_size = 45
+text = "Name here"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_exex5")
+theme_override_font_sizes/font_size = 32
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 2
+text_overrun_behavior = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 41)
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
