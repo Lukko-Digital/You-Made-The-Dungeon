@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5hrq6483g8eq"]
+[gd_scene load_steps=12 format=3 uid="uid://5hrq6483g8eq"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_2c08x"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_3pk5m"]
@@ -976,9 +976,13 @@ texture = ExtResource("2_3pk5m")
 3:31/0 = 0
 3:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:31/0/physics_layer_0/angular_velocity = 0.0
+3:31/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -6, -1, -6, -1, 8, 8, 8)
+3:31/0/physics_layer_0/polygon_0/one_way = true
 4:31/0 = 0
 4:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:31/0/physics_layer_0/angular_velocity = 0.0
+4:31/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 2, -6, 2, 8, -8, 8)
+4:31/0/physics_layer_0/polygon_0/one_way = true
 5:30/0 = 0
 5:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:30/0/physics_layer_0/angular_velocity = 0.0
@@ -1164,6 +1168,8 @@ texture = ExtResource("2_3pk5m")
 3:29/0 = 0
 3:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:29/0/physics_layer_0/angular_velocity = 0.0
+3:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -3, 8, -3, 8, 8, -2, 8)
+3:29/0/physics_layer_0/polygon_0/one_way = true
 2:30/0 = 0
 2:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:30/0/physics_layer_0/angular_velocity = 0.0
@@ -1209,6 +1215,8 @@ texture = ExtResource("2_3pk5m")
 4:29/0 = 0
 4:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:29/0/physics_layer_0/angular_velocity = 0.0
+4:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(1, -3, -8, -3, -8, 8, 1, 8)
+4:29/0/physics_layer_0/polygon_0/one_way = true
 5:31/0 = 0
 5:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:31/0/physics_layer_0/angular_velocity = 0.0
@@ -1224,9 +1232,13 @@ texture = ExtResource("2_3pk5m")
 3:30/0 = 0
 3:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:30/0/physics_layer_0/angular_velocity = 0.0
+3:30/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+3:30/0/physics_layer_0/polygon_0/one_way = true
 4:30/0 = 0
 4:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:30/0/physics_layer_0/angular_velocity = 0.0
+4:30/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+4:30/0/physics_layer_0/polygon_0/one_way = true
 0:27/0 = 0
 0:27/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:27/0/physics_layer_0/angular_velocity = 0.0
@@ -1702,6 +1714,25 @@ texture = ExtResource("2_3pk5m")
 5:12/0 = 0
 5:12/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:12/0/physics_layer_0/angular_velocity = 0.0
+0:23/0 = 0
+0:23/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:23/0/physics_layer_0/angular_velocity = 0.0
+0:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(2, 2, 8, 2, 8, 8, -0.5, 8)
+0:23/0/physics_layer_0/polygon_0/one_way = true
+0:24/0 = 0
+0:24/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:24/0/physics_layer_0/angular_velocity = 0.0
+1:24/0 = 0
+1:24/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:24/0/physics_layer_0/angular_velocity = 0.0
+1:23/0 = 0
+1:23/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:23/0/physics_layer_0/angular_velocity = 0.0
+1:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 2, -8, 2, -8, 8, 0.5, 8)
+1:23/0/physics_layer_0/polygon_0/one_way = true
+2:24/0 = 0
+2:24/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:24/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_3dud5"]
 physics_layer_0/collision_layer = 34
@@ -1717,6 +1748,20 @@ terrain_set_1/terrain_1/color = Color(0.180392, 0.152941, 0.0705882, 1)
 terrain_set_1/terrain_2/name = "vine_decor"
 terrain_set_1/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 sources/6 = SubResource("TileSetAtlasSource_hp7nu")
+
+[sub_resource type="Gradient" id="Gradient_2k5ja"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.661017)
+colors = PackedColorArray(0.763009, 0.763009, 0.763009, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1ojq"]
+gradient = SubResource("Gradient_2k5ja")
+width = 339
+height = 296
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.517845, 0.442735)
+fill_to = Vector2(-0.143, 0.323)
 
 [node name="level_1" type="Node2D"]
 
@@ -1768,7 +1813,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-327678, 589830, 28, -262142, 589830, 29, -196606, 589830, 30, -131070, 589830, 31, -327677, 655366, 28, -262141, 655366, 29, -196605, 655366, 30, -131069, 655366, 31, -131077, 1835014, 4, -524283, 1900550, 4, -655341, 1835014, 4, -196585, 1900550, 4, -262115, 1835014, 4, 36, 1966086, 4, 196642, 1900550, 4, -917467, 1966086, 4, -786399, 1835014, 4, -1048574, 1966086, 4, -1245168, 1900550, 4, -655334, 1966086, 4, -982985, 1966086, 4, -786370, 1966086, 4, -524222, 1835014, 4, -720828, 1966086, 4, -524221, 1900550, 4, -131001, 1835014, 4, -589743, 1835014, 4, 65583, 1769478, 27, 131119, 1769478, 28, 65584, 1835014, 27, 131120, 1835014, 28, 65585, 1900550, 27, 131121, 1900550, 28, -65460, 1769478, 27, 76, 1769478, 28, -65459, 1835014, 27, 77, 1835014, 28, -65458, 1900550, 27, 78, 1900550, 28)
+layer_1/tile_data = PackedInt32Array(-327678, 589830, 28, -262142, 589830, 29, -196606, 589830, 30, -131070, 589830, 31, -327677, 655366, 28, -262141, 655366, 29, -196605, 655366, 30, -131069, 655366, 31, -131077, 6, 25, -524283, 1900550, 4, -655341, 1835014, 4, -196585, 1900550, 4, -262115, 1835014, 4, 36, 1966086, 4, 196642, 1900550, 4, -917467, 1966086, 4, -786399, 1835014, 4, -1048574, 1966086, 4, -1245168, 1900550, 4, -655334, 1966086, 4, -982985, 1966086, 4, -786370, 1966086, 4, -524222, 1835014, 4, -720828, 1966086, 4, -524221, 1900550, 4, -131001, 1835014, 4, -589743, 1835014, 4, 65583, 1769478, 27, 131119, 1769478, 28, 65584, 1835014, 27, 65585, 1900550, 27, -65460, 1769478, 27, 76, 1769478, 28, -65459, 1835014, 27, 77, 1835014, 28, -65458, 1900550, 27, 78, 1900550, 28, -65538, 6, 23, -2, 6, 24, -65537, 65542, 23, -1, 65542, 24, 196634, 196614, 29, 262170, 196614, 30, 196635, 262150, 29, 262171, 262150, 30, 262196, 196614, 31, 262197, 262150, 31, 131103, 6, 25, 196639, 6, 26, -65541, 6, 26, -393192, 131078, 24, -655324, 6, 25, -589788, 6, 26, -786374, 6, 25, -720838, 6, 26, -589807, 6, 25, -524271, 6, 26, 131136, 196614, 31, 131137, 262150, 31, -720827, 131078, 24, -982948, 6, 25, -917412, 6, 26, 65618, 6, 23, 131154, 6, 24, 65619, 65542, 23, 131155, 65542, 24, 131120, 1835014, 28, 131121, 1900550, 28, 75, 6, 25, 65611, 6, 26, 131118, 6, 25, 196654, 6, 26, -65532, 131078, 24)
 layer_2/name = "collision"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -1789,5 +1834,121 @@ visible = false
 
 [node name="NextLevel" parent="LevelEssentials" instance=ExtResource("5_6oog4")]
 position = Vector2(1638, -201)
+
+[node name="lighting" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="lighting"]
+position = Vector2(137, -16)
+color = Color(0.635294, 0.721569, 1, 1)
+
+[node name="PointLight2D3" type="PointLight2D" parent="lighting"]
+position = Vector2(-73, -27)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D5" type="PointLight2D" parent="lighting"]
+position = Vector2(281, -124)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D8" type="PointLight2D" parent="lighting"]
+position = Vector2(504, 48)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D9" type="PointLight2D" parent="lighting"]
+position = Vector2(584, -144)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D11" type="PointLight2D" parent="lighting"]
+position = Vector2(747, 42)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D13" type="PointLight2D" parent="lighting"]
+position = Vector2(934, -178)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D14" type="PointLight2D" parent="lighting"]
+position = Vector2(1111, -161)
+scale = Vector2(0.589971, 0.623701)
+color = Color(0.909804, 0.564706, 0.239216, 1)
+energy = 3.08
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D16" type="PointLight2D" parent="lighting"]
+position = Vector2(1206, 21)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D18" type="PointLight2D" parent="lighting"]
+position = Vector2(1482, -226)
+scale = Vector2(0.323349, 0.324844)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D19" type="PointLight2D" parent="lighting"]
+position = Vector2(393, -85)
+scale = Vector2(0.589971, 0.623701)
+color = Color(0.909804, 0.564706, 0.239216, 1)
+energy = 3.08
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
+
+[node name="PointLight2D20" type="PointLight2D" parent="lighting"]
+position = Vector2(74, -4)
+scale = Vector2(0.589971, 0.623701)
+color = Color(0.909804, 0.564706, 0.239216, 1)
+energy = 3.08
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_t1ojq")
+texture_scale = 1.04
 
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
