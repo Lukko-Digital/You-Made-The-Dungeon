@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://xh4tnmf7oytf"]
+[gd_scene load_steps=10 format=3 uid="uid://cmskwakwpa0ay"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_dhmbr"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_ddipp"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="3_dn16i"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="4_qyeao"]
+[ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="5_l0h5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syrki"]
 size = Vector2(14, 27)
@@ -1773,7 +1774,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 10
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(65516, 65542, 0, 65517, 65542, 0, 65518, 65542, 0, 65519, 65542, 0, 65520, 65542, 0, 65521, 65542, 0, 65522, 65542, 0, 65523, 65542, 0, 65524, 65542, 0, 65525, 65542, 0, 65526, 65542, 0, 65527, 65542, 0, 65528, 65542, 0, 65529, 65542, 0, 65530, 65542, 0, 65531, 65542, 0, 65532, 65542, 0, 65533, 65542, 0, 65534, 65542, 0, 65535, 65542, 0, 0, 65542, 0, 1, 65542, 0, 2, 65542, 0, 3, 65542, 0, -131092, 65542, 2, -131091, 65542, 2, -131090, 65542, 2, -131089, 65542, 2, -131088, 65542, 2, -131087, 65542, 2, -131086, 65542, 2, -131085, 65542, 2, -131084, 131078, 2, -196620, 131078, 1, -262155, 131078, 8, -262156, 196614, 7, -327691, 196614, 7, -327692, 196614, 6, -327690, 131078, 8, -458762, 196614, 6, -393226, 196614, 7, -458761, 196614, 7, -393225, 131078, 8, -458760, 131078, 8, -524295, 65542, 8, -524294, 65542, 8, -524293, 65542, 8, -524292, 65542, 8, -524291, 65542, 8, -524290, 65542, 8, -524289, 65542, 8, -589824, 65542, 8, -589823, 65542, 8, -589822, 65542, 8, -589821, 65542, 8, -589820, 65542, 8, -524296, 196614, 7, -524297, 196614, 6, -393227, 196614, 6, 4, 65542, 6, 5, 65542, 6, 6, 65542, 6, 7, 65542, 6, 8, 65542, 6, 9, 65542, 6, 10, 65542, 6, 11, 65542, 6, 12, 65542, 6, 13, 65542, 6, 14, 65542, 6, 15, 65542, 6, -589819, 65542, 8, -589818, 65542, 8, -589817, 65542, 8, -589816, 65542, 8, -589815, 65542, 8, -589814, 65542, 8, -589813, 65542, 8, -589812, 65542, 8, -589811, 65542, 8, -589810, 65542, 8, -589809, 65542, 8, 16, 327686, 5, -196592, 6, 7, -262128, 6, 0, -262127, 65542, 0, -262126, 65542, 0, -262125, 65542, 0, -262124, 65542, 0, -589808, 65542, 2, -589807, 65542, 2, -589806, 65542, 2, -589805, 65542, 2, -589804, 65542, 2, -589803, 65542, 2, -262123, 65542, 0, -262122, 65542, 0, -262121, 65542, 0, -262120, 65542, 0, -262119, 65542, 0, -262118, 65542, 0, -589802, 65542, 2, -589801, 65542, 2, -589800, 65542, 2, -589799, 65542, 2, -655334, 131078, 1, -720870, 131078, 1, -786406, 131078, 1, -851942, 131078, 1, -917478, 131078, 1, -589798, 131078, 2, -262117, 65542, 0, -262116, 65542, 0, -262115, 65542, 0, -262114, 65542, 0, -262113, 65542, 0, -262112, 65542, 0, -327647, 6, 1, -393183, 6, 1, -589791, 6, 1, -655327, 6, 1, -720863, 6, 1, -786399, 6, 1, -851935, 6, 1)
 layer_3/name = "decor_in_front"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
@@ -1784,5 +1785,15 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="ui" parent="LevelEssentials" instance=ExtResource("4_qyeao")]
 visible = false
+
+[node name="DartShooter" parent="." instance=ExtResource("5_l0h5j")]
+position = Vector2(264, -16)
+
+[node name="DartShooter2" parent="." instance=ExtResource("5_l0h5j")]
+position = Vector2(536, -112)
+
+[node name="DartShooter3" parent="." instance=ExtResource("5_l0h5j")]
+position = Vector2(424, -176)
+scale = Vector2(-1, 1)
 
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
