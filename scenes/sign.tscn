@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c01fab6j58ira"]
+
+[ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_50pta"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibm3u"]
+radius = 24.0
+
+[node name="Sign" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_50pta")
+region_enabled = true
+region_rect = Rect2(85.3243, 455.755, 21.3506, 24.7289)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ibm3u")
