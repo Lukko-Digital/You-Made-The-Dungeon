@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_1l4fk"]
 [ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="5_l0h5j"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="7_q6yer"]
-[ext_resource type="PackedScene" path="res://scenes/lamp.tscn" id="8_5e32i"]
-[ext_resource type="PackedScene" uid="uid://tghk2pfvvax" path="res://scenes/torch.tscn" id="9_q7m83"]
+[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/lamp.tscn" id="8_5e32i"]
+[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/torch.tscn" id="9_q7m83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syrki"]
 size = Vector2(14, 27)

@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_8c2v1"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="3_02ns2"]
 [ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_6oog4"]
-[ext_resource type="PackedScene" uid="uid://tghk2pfvvax" path="res://scenes/torch.tscn" id="6_khpn8"]
-[ext_resource type="PackedScene" path="res://scenes/lamp.tscn" id="7_sfq4u"]
+[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/torch.tscn" id="6_khpn8"]
+[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/lamp.tscn" id="7_sfq4u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxiyh"]
 size = Vector2(14, 27)

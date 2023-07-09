@@ -434,5 +434,89 @@
 				"Text": "see ya later alligator."
 			}
 		]
+	},
+	"SkeletonNPC5": {
+		"0": [
+			{
+				"Name": "Greg",
+				"Text": "whelp."
+			},
+			{
+				"Name": "Greg",
+				"Text": "i guess you finally figured it out..."
+			},
+			{
+				"Name": "Greg",
+				"Text": "at the end of the day,"
+			},
+			{
+				"Name": "Greg",
+				"Text": "there was no boss at all."
+			},
+			{
+				"Name": "Me",
+				"Text": "...what?"
+			},
+			{
+				"Name": "Greg",
+				"Text": "nope just kidding. it's me. i was the boss the whole time!"
+			},
+			{
+				"Name": "Me",
+				"Text": "............what?"
+			},
+			{
+				"Name": "secretly the boss the whole time!",
+				"Image": "Greg",
+				"Text": "that's right. it was me. me the whole time."
+			},
+			{
+				"Name": "secretly the boss the whole time!",
+				"Image": "Greg",
+				"Text": "also i took your keys. that was also me. i was evil the whole time too!"
+			},
+			{
+				"Name": "Me",
+				"Text": "Uhh"
+			},
+			{
+				"Name": "secretly evil the whole time!",
+				"Image": "Greg",
+				"Text": "bet you're all freaked out right now."
+			},
+			{
+				"Name": "secretly evil the whole time!",
+				"Image": "Greg",
+				"Text": "well really it's quite simple..."
+			},
+			{
+				"Name": "secretly evil the whole time!",
+				"Image": "Greg",
+				"Text": "lie, trick decieve, i'm great at all of it."
+			},
+			{
+				"Name": "secretly evil the whole time!",
+				"Image": "Greg",
+				"Text": "i could even- ohhh shit. damn."
+			},
+			{
+				"Name": "secretly evil the whole time!",
+				"Image": "Greg",
+				"Text": "outta time."
+			},
+			{
+				"Name": "Incredibly Confused",
+				"Image": "Me",
+				"Text": "Huh?"
+			},
+			{
+				"Name": "Greg",
+				"Text": "thanks for playing guys, means the world."
+			},
+			{
+				"Name": "Greg",
+				"Text": "deuces!"
+			}
+		]
 	}
 }

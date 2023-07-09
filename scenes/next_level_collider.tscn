@@ -64,7 +64,6 @@ script = ExtResource("1_k4q3s")
 shape = SubResource("WorldBoundaryShape2D_78onm")
 
 [node name="FadeBlack" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="FadeBlack"]
 anchors_preset = 15
