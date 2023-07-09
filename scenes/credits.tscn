@@ -2096,5 +2096,9 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(2066, -667)
+color = Color(0.635294, 0.721569, 1, 1)
+
 [connection signal="animation_finished" from="FadeBlack/FadeAnimation" to="." method="_on_fade_animation_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

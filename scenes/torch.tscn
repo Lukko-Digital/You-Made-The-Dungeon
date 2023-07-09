@@ -41,13 +41,13 @@ _data = {
 "idle_2": SubResource("Animation_kmn14")
 }
 
-[sub_resource type="Gradient" id="Gradient_d3wd2"]
+[sub_resource type="Gradient" id="Gradient_tuhxl"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.661017)
 colors = PackedColorArray(0.763009, 0.763009, 0.763009, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uqnkr"]
-gradient = SubResource("Gradient_d3wd2")
+gradient = SubResource("Gradient_tuhxl")
 width = 339
 height = 296
 use_hdr = true
