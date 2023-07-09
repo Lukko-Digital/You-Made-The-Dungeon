@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpgtyo3u15vyp"]
+
+[ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_7gfjo"]
+
+[sub_resource type="Gradient" id="Gradient_k6t0g"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.661017)
+colors = PackedColorArray(0.763009, 0.763009, 0.763009, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_shxf3"]
+gradient = SubResource("Gradient_k6t0g")
+width = 339
+height = 296
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.517845, 0.442735)
+fill_to = Vector2(-0.143, 0.323)
+
+[node name="Lamp" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7gfjo")
+region_enabled = true
+region_rect = Rect2(35, 386, 9, 14)
+
+[node name="PointLight2D20" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.589971, 0.623701)
+color = Color(0.909804, 0.564706, 0.239216, 1)
+energy = 3.08
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_shxf3")
+texture_scale = 1.04
