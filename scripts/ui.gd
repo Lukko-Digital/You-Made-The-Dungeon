@@ -88,8 +88,8 @@ func handle_dialogue_display(dialogue_list):
 	dialogue_prompt.hide()
 	
 	# set text
-	name_label.text = current_interactable_npc
-	dialogue_label.text = dialogue_list[current_dialogue_idx]
+	name_label.text = dialogue_list[current_dialogue_idx]["Name"]
+	dialogue_label.text = dialogue_list[current_dialogue_idx]["Text"]
 	
 	# animation
 	dialogue_label.visible_characters = 0
