@@ -17,6 +17,7 @@ var rng = RandomNumberGenerator.new()
 @onready var dialogue_box: NinePatchRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name
 @onready var dialogue_label: Label = 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue
+@onready var portrait: TextureRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Portrait
 @onready var text_timer: Timer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer
 @onready var dialogue_noise: AudioStreamPlayer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/AudioStreamPlayer
 
@@ -88,8 +89,10 @@ func handle_dialogue_display(dialogue_list):
 	dialogue_prompt.hide()
 	
 	# set text
-	name_label.text = dialogue_list[current_dialogue_idx]["Name"]
+	var name = dialogue_list[current_dialogue_idx]["Name"]
+	name_label.text = name
 	dialogue_label.text = dialogue_list[current_dialogue_idx]["Text"]
+	portrait.texture = load("res://assets/portraits/%s.webp" % name)
 	
 	# animation
 	dialogue_label.visible_characters = 0
