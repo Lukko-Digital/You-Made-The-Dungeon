@@ -92,6 +92,8 @@ func handle_dialogue_display(dialogue_list):
 		current_dialogue_idx = 0
 		if current_interactable_npc != 'PhoneCall':
 			dialogue_prompt.show()
+		elif current_interactable_npc != 'SkeletonNPC5':
+			get_tree().change_scene_to_file("res://scenes/credits.tscn")
 		else:
 			phone_call_stop.emit()
 			arrow_animation.current_animation = 'default'
