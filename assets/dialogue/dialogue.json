@@ -1,15 +1,33 @@
 {
-	"SleepingKnight": {
+	"Sign": {
 		"0": [
 			{
+				"Name": "Sign",
+				"Text": "YE WHO ENTER THESE TREACHEROUS GROUNDS, PREPARE FOR THE BATTLE OF A LIFETIME."
+			},
+			{
 				"Name": "Me",
-				"Text": "The knight's about to wake up, better get out quick"
+				"Text": "I can't believe they let me write that on the sign."
 			}
 		],
 		"1": [
 			{
 				"Name": "Me",
-				"Text": "Yup, better get moving"
+				"Text": "I don't even want to look at it anymore."
+			}
+		]
+	},
+	"SleepingKnight": {
+		"0": [
+			{
+				"Name": "Me",
+				"Text": "The knight's about to wake up, better get out quick."
+			}
+		],
+		"1": [
+			{
+				"Name": "Me",
+				"Text": "Yup, better get moving."
 			}
 		]
 	},
