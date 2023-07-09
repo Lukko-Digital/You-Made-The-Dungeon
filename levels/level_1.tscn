@@ -1481,6 +1481,8 @@ drag_top_margin = 0.6
 drag_bottom_margin = 0.0
 editor_draw_limits = true
 
+[node name="EnableSmoothTimer" type="Timer" parent="player/Camera2D"]
+
 [node name="NPCDialogueCollider" type="Area2D" parent="player"]
 position = Vector2(0, 14)
 collision_mask = 9
