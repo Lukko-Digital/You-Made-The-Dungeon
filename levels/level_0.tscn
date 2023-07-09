@@ -1836,6 +1836,7 @@ position = Vector2(-33, 3)
 shape = SubResource("WorldBoundaryShape2D_ln604")
 
 [node name="NextLevel" parent="." instance=ExtResource("6_27ha3")]
+position = Vector2(606, 6)
 
 [node name="SleepingKnight" parent="." groups=["npc"] instance=ExtResource("3_ggvro")]
 position = Vector2(137, -16)

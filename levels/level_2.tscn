@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://1aes0cinbfrv"]
+[gd_scene load_steps=13 format=3 uid="uid://1aes0cinbfrv"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_3f0ro"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_5yi0w"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="3_rqgv2"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="4_fn26t"]
-[ext_resource type="PackedScene" uid="uid://cobsd5flmdxx" path="res://scenes/jump_spike.tscn" id="5_bl1x2"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="5_bl1x2"]
+[ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_sxhu1"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="6_3xncf"]
-[ext_resource type="PackedScene" uid="uid://c1rjll3htwfu7" path="res://scenes/sign.tscn" id="7_p2b7r"]
+[ext_resource type="PackedScene" uid="uid://c01fab6j58ira" path="res://scenes/sign.tscn" id="7_p2b7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4yli"]
 size = Vector2(14, 27)
@@ -1842,6 +1843,9 @@ layer_3/z_index = 10
 layer_3/tile_data = PackedInt32Array()
 
 [node name="ui" parent="LevelEssentials" instance=ExtResource("4_fn26t")]
+
+[node name="NextLevel" parent="LevelEssentials" instance=ExtResource("5_sxhu1")]
+position = Vector2(734, -8)
 
 [node name="Node2D" type="Node2D" parent="."]
 
