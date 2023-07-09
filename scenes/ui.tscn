@@ -90,23 +90,6 @@ patch_margin_bottom = 42
 [node name="TextTimer" type="Timer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
 one_shot = true
 
-[node name="Dialogue" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
-visible = false
-layout_mode = 2
-offset_right = 1200.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_exex5")
-theme_override_font_sizes/font_size = 40
-text = "zao shang hao zong guo xian zai wo you bing qi lin wo hen xi huan bing qi lin"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox"]
 layout_mode = 1
 anchors_preset = 15
@@ -140,23 +123,23 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_exex5")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 50
 text = "Name here"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
+[node name="Dialogue" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_exex5")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 40
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 autowrap_mode = 2
 text_overrun_behavior = 1

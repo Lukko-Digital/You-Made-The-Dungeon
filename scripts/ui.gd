@@ -67,11 +67,14 @@ func get_dialogue_list(name):
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
 		$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.hide()
+		$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
 		return
 	
 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.show()
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/Label.text = dialogue_list[current_dialogue_idx]
+	$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
+	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name.text = current_interactable_npc
+	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue.text = dialogue_list[current_dialogue_idx]
 	
 	current_dialogue_idx += 1
