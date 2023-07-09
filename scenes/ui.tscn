@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dx461uwio2nym" path="res://assets/sprites/key_press.png" id="2_iarai"]
 [ext_resource type="Texture2D" uid="uid://criln7mov7pob" path="res://assets/sprites/key_press_bg.png" id="3_d1usr"]
 [ext_resource type="AudioStream" uid="uid://dweipjo8qh7ai" path="res://assets/audio/talking_sound_2.mp3" id="5_qc10x"]
-[ext_resource type="Texture2D" uid="uid://y30crtfokuno" path="res://icon.svg" id="6_e10rv"]
+[ext_resource type="Texture2D" uid="uid://p0tgvwnd1sma" path="res://icon.svg" id="6_e10rv"]
 [ext_resource type="Texture2D" uid="uid://duv78bseshd8h" path="res://assets/sprites/dialogue_arrow.png" id="8_wo5qd"]
 
 [sub_resource type="Animation" id="Animation_wtn3e"]
@@ -136,7 +136,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+[node name="Portrait" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 texture = ExtResource("6_e10rv")

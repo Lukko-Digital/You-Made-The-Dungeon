@@ -1,12 +1,34 @@
 {
-	"NPC": {
-		"0": ["yo whats up", "haven't seen you round here before", "good luck!"],
-		"1": ["what are you doing?", "get going!"],
-		"2": ["..."]
-	},
 	"SkeletonNPC": {
-		"0": ["yoooooooo", "ma boney boy", "whats poppin"],
-		"1": ["gogogo"],
-		"5": ["fall good"]
+		"0": [
+			{
+				"Name": "SkeletonNPC",
+				"Text": "yoooooooo"
+			},
+			{
+				"Name": "SkeletonNPC",
+				"Text": "ma boney boy"
+			},
+			{
+				"Name": "Me",
+				"Text": "whats poppin"
+			},
+			{
+				"Name": "SkeletonNPC",
+				"Text": "fall good"
+			}
+		],
+		"3": [
+			{
+				"Name": "SkeletonNPC",
+				"Text": "gogogo"
+			}
+		],
+		"6": [
+			{
+				"Name": "SkeletonNPC",
+				"Text": "fall good"
+			}
+		]
 	}
 }

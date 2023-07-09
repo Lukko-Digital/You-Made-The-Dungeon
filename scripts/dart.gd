@@ -10,6 +10,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if not area_2d.get_overlapping_bodies().is_empty() and invuln_timer.is_stopped():
 		queue_free()

@@ -171,7 +171,7 @@ func on_dart(body):
 	is_on_dart = true
 	is_jumping = false
 
-func handle_trap_collisions(delta):
+func handle_trap_collisions(_delta):
 	handle_jump_spike_collision()
 	handle_dart_collision()
 	
