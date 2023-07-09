@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c514o3ukru8aa"]
+[gd_scene load_steps=13 format=3 uid="uid://c514o3ukru8aa"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_dlxqc"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_fafdl"]
@@ -1751,7 +1751,7 @@ fill_to = Vector2(-0.143, 0.323)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ln604"]
 normal = Vector2(-1, 0)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_dlxqc")]
 z_index = 5
