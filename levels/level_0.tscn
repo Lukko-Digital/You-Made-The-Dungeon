@@ -1746,13 +1746,13 @@ normal = Vector2(-1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0hrm"]
 radius = 24.0
 
-[sub_resource type="Gradient" id="Gradient_d3wd2"]
+[sub_resource type="Gradient" id="Gradient_sf87m"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.661017)
 colors = PackedColorArray(0.763009, 0.763009, 0.763009, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_diiag"]
-gradient = SubResource("Gradient_d3wd2")
+gradient = SubResource("Gradient_sf87m")
 width = 339
 height = 296
 use_hdr = true
@@ -1854,9 +1854,9 @@ shape = SubResource("CircleShape2D_d0hrm")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(-22, -30)
-scale = Vector2(0.226912, 0.259875)
+scale = Vector2(0.277967, 0.29236)
 color = Color(0.764706, 0.423529, 0, 1)
-energy = 2.15
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
@@ -1868,9 +1868,9 @@ color = Color(0.635294, 0.721569, 1, 1)
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
 position = Vector2(-151, -33)
-scale = Vector2(0.221239, 0.240385)
+scale = Vector2(0.323349, 0.324844)
 color = Color(0.764706, 0.423529, 0, 1)
-energy = 2.15
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
@@ -1878,9 +1878,9 @@ texture_scale = 1.04
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
 position = Vector2(216, -35)
-scale = Vector2(0.209893, 0.233888)
+scale = Vector2(0.271, 0.296)
 color = Color(0.764706, 0.423529, 0, 1)
-energy = 2.15
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
@@ -1888,19 +1888,19 @@ texture_scale = 1.04
 
 [node name="PointLight2D5" type="PointLight2D" parent="."]
 position = Vector2(376, -35)
-scale = Vector2(0.209893, 0.233888)
+scale = Vector2(0.271, 0.296)
 color = Color(0.764706, 0.423529, 0, 1)
-energy = 2.15
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
 texture_scale = 1.04
 
-[node name="PointLight2D4" type="PointLight2D" parent="PointLight2D5"]
-position = Vector2(762.293, -4.27554)
-scale = Vector2(0.891893, 0.833333)
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(539, -30)
+scale = Vector2(0.266621, 0.266372)
 color = Color(0.764706, 0.423529, 0, 1)
-energy = 2.15
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
