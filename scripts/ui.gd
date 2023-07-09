@@ -4,18 +4,23 @@ var current_interactable_npc = null
 var in_interaction = false
 
 const DIALOGUE_PATH: String = "res://assets/dialogue/dialogue.json"
+const VOICE_PITCH_MIN: float = 0.9
+const VOICE_PITCH_MAX: float = 1.5
+
 var dialogue
 var num_interactions
 var current_dialogue_idx = 0
 var display_in_progress = false
+var rng = RandomNumberGenerator.new()
 
 @onready var dialogue_prompt: Control = $HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt
 @onready var dialogue_box: NinePatchRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name
 @onready var dialogue_label: Label = 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue
 @onready var text_timer: Timer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer
+@onready var dialogue_noise: AudioStreamPlayer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/AudioStreamPlayer
 
-const TEXT_SPEED = 0.03
+const TEXT_SPEED = 0.04
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -91,6 +96,8 @@ func handle_dialogue_display(dialogue_list):
 	display_in_progress = true
 	
 	while dialogue_label.visible_characters < len(dialogue_label.text):
+		dialogue_noise.pitch_scale = rng.randf_range(VOICE_PITCH_MIN, VOICE_PITCH_MAX)
+		dialogue_noise.play()
 		dialogue_label.visible_characters += 1
 		text_timer.start()
 		await text_timer.timeout
