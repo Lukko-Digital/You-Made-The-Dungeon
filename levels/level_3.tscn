@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_1l4fk"]
 [ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="5_l0h5j"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="7_q6yer"]
-[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/lamp.tscn" id="8_5e32i"]
-[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/torch.tscn" id="9_q7m83"]
+[ext_resource type="PackedScene" path="res://scenes/lamp.tscn" id="8_5e32i"]
+[ext_resource type="PackedScene" uid="uid://tghk2pfvvax" path="res://scenes/torch.tscn" id="9_q7m83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syrki"]
 size = Vector2(14, 27)
@@ -1756,15 +1756,15 @@ sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
 [node name="player" parent="LevelEssentials" instance=ExtResource("1_dhmbr")]
 z_index = 5
-position = Vector2(-435, -15)
+position = Vector2(-438, -15)
 collision_mask = 10
 
 [node name="Camera2D" type="Camera2D" parent="LevelEssentials/player"]
 position = Vector2(72, -10)
 zoom = Vector2(5.092, 5.092)
-limit_left = -418
+limit_left = -430
 limit_top = -430
-limit_right = 900
+limit_right = 890
 limit_bottom = 107
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0

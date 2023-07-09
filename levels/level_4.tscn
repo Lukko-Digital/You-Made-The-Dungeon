@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_n6aoq"]
 [ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="6_0y010"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="7_4vcu4"]
-[ext_resource type="PackedScene" uid="uid://cobsd5flmdxx" path="res://scenes/jump_spike.tscn" id="8_6kgju"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="8_6kgju"]
 [ext_resource type="PackedScene" uid="uid://c01fab6j58ira" path="res://scenes/sign.tscn" id="9_g16cf"]
-[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/lamp.tscn" id="10_apfy8"]
-[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/torch.tscn" id="11_gml5p"]
+[ext_resource type="PackedScene" path="res://scenes/lamp.tscn" id="10_apfy8"]
+[ext_resource type="PackedScene" uid="uid://tghk2pfvvax" path="res://scenes/torch.tscn" id="11_gml5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opyap"]
 size = Vector2(14, 27)
@@ -2186,7 +2186,7 @@ sources/0 = SubResource("TileSetAtlasSource_h1i4d")
 
 [node name="player" parent="LevelEssentials" instance=ExtResource("1_ohfwd")]
 z_index = 5
-position = Vector2(-308, -21)
+position = Vector2(-300, -16)
 collision_mask = 10
 
 [node name="Camera2D" type="Camera2D" parent="LevelEssentials/player"]
@@ -2204,6 +2204,7 @@ editor_draw_limits = true
 script = ExtResource("2_t6g6p")
 
 [node name="NPCDialogueCollider" type="Area2D" parent="LevelEssentials/player"]
+visible = false
 position = Vector2(0, 14)
 collision_mask = 9
 
@@ -2219,11 +2220,9 @@ position = Vector2(-132, 1)
 shape = SubResource("WorldBoundaryShape2D_n0s6y")
 
 [node name="ui" parent="LevelEssentials" instance=ExtResource("4_gj7s5")]
-visible = false
 
 [node name="NextLevel" parent="LevelEssentials" instance=ExtResource("5_n6aoq")]
-visible = false
-position = Vector2(636, -277)
+position = Vector2(2932, -526)
 
 [node name="TileMap" type="TileMap" parent="LevelEssentials"]
 tile_set = SubResource("TileSet_7sx84")
@@ -2262,10 +2261,6 @@ position = Vector2(88, -148)
 [node name="DartShooter4" parent="." instance=ExtResource("6_0y010")]
 position = Vector2(-40, -212)
 scale = Vector2(-1, 1)
-
-[node name="SkeletonNPC4" parent="." instance=ExtResource("7_4vcu4")]
-visible = false
-position = Vector2(405, -271)
 
 [node name="DartShooter5" parent="." instance=ExtResource("6_0y010")]
 position = Vector2(632, -324)
@@ -2312,10 +2307,10 @@ position = Vector2(1752, -456)
 [node name="JumpSpike10" parent="." instance=ExtResource("8_6kgju")]
 position = Vector2(1736, -456)
 
-[node name="SkeletonNPC2" parent="." instance=ExtResource("7_4vcu4")]
+[node name="SkeletonNPC4" parent="." instance=ExtResource("7_4vcu4")]
 position = Vector2(2437, -461)
 
-[node name="Sign3" parent="." instance=ExtResource("9_g16cf")]
+[node name="Sign4" parent="." groups=["npc"] instance=ExtResource("9_g16cf")]
 position = Vector2(1929, -651)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -2382,4 +2377,6 @@ position = Vector2(2224, -497)
 [node name="Lamp8" parent="." instance=ExtResource("10_apfy8")]
 position = Vector2(2056, -375)
 
+[connection signal="area_entered" from="LevelEssentials/player/NPCDialogueCollider" to="LevelEssentials/ui" method="_on_npc_dialogue_collider_area_entered"]
+[connection signal="area_exited" from="LevelEssentials/player/NPCDialogueCollider" to="LevelEssentials/ui" method="_on_npc_dialogue_collider_area_exited"]
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
