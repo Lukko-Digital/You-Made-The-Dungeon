@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3pdn3kgarht4"]
+
+[ext_resource type="AudioStream" uid="uid://cvgdp76n0n3l3" path="res://assets/audio/gamejamb_background_1.mp3" id="1_0owcg"]
+
+[sub_resource type="GDScript" id="GDScript_5ehwn"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.play()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_0owcg")
+autoplay = true
+script = SubResource("GDScript_5ehwn")
