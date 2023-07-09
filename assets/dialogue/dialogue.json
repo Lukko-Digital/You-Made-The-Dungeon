@@ -1,4 +1,30 @@
 {
+	"Door": {
+		"0": [
+			{
+				"Name": "Me",
+				"Text": "*pat*"
+			},
+			{
+				"Name": "Me",
+				"Text": "*pat* *pat* *pat*"
+			},
+			{
+				"Name": "Me",
+				"Text": "..."
+			},
+			{
+				"Name": "Me",
+				"Text": "...forgot my keys."
+			}
+		],
+		"1": [
+			{
+				"Name": "Me",
+				"Text": "Can't go that way now."
+			}
+		]
+	},
 	"Sign": {
 		"0": [
 			{
@@ -35,6 +61,7 @@
 		"0": [
 			{
 				"Name": "Phone",
+				"Image": "Sign",
 				"Text": "*ring* *ring*"
 			},
 			{
@@ -43,6 +70,7 @@
 			},
 			{
 				"Name": "Boss",
+				"Image": "SkeletonNPC",
 				"Text": "Hey! What are you still doing down there?"
 			},
 			{
