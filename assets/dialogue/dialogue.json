@@ -219,5 +219,220 @@
 				"Text": "See ya Greg."
 			}
 		]
+	},
+	"SkeletonNPC3": {
+		"0": [
+			{
+				"Name": "Me",
+				"Text": "OwwwWWWWW! DUDE!"
+			},
+			{
+				"Name": "Greg",
+				"Text": "..."
+			},
+			{
+				"Name": "Me",
+				"Text": "THAT HURT."
+			},
+			{
+				"Name": "Greg",
+				"Text": "sure did."
+			},
+			{
+				"Name": "Me",
+				"Text": "How did you even get here?!"
+			},
+			{
+				"Name": "Greg",
+				"Text": "i walked."
+			},
+			{
+				"Name": "Greg",
+				"Text": "im a great walker."
+			},
+			{
+				"Name": "Greg",
+				"Text": "its like most of what i do."
+			},
+			{
+				"Name": "Me",
+				"Text": "Great."
+			},
+			{
+				"Name": "Greg",
+				"Text": "listen man, life is like a river. sometimes it stinks. but sometimes it's like awesome."
+			},
+			{
+				"Name": "Greg",
+				"Text": "n hear me out."
+			},
+			{
+				"Name": "Greg",
+				"Text": "me n you, we're gonna stick it to the man. we're gonna get boss back for putting us down here."
+			},
+			{
+				"Name": "Me",
+				"Text": "Thanks man... I'm glad we're on the same page."
+			},
+			{
+				"Name": "Greg",
+				"Text": "godspeed, young lion."
+			},
+			{
+				"Name": "Me",
+				"Text": "What?"
+			}
+		],
+		"1": [
+			{
+				"Name": "Greg",
+				"Text": "in a while ocelot."
+			},
+			{
+				"Name": "Me",
+				"Text": "Uh, yeah, see ya man."
+			}
+		],
+		"2": [
+			{
+				"Name": "Greg",
+				"Text": "see ya round crocodile."
+			},
+			{
+				"Name": "Me",
+				"Text": "Dude none of these rhyme."
+			}
+		],
+		"3": [
+			{
+				"Name": "Greg",
+				"Text": "peace n love *throws up peace sign*"
+			}
+		]
+	},
+	"Sign3": {
+		"0": [
+			{
+				"Name": "Sign",
+				"Text": "BEHOLDDDD YE,"
+			},
+			{
+				"Name": "Sign",
+				"Text": "BEFORE YE VER EYES IS YE FIRST AND QUITE POSSIBLY YE LAST BATTLE"
+			},
+			{
+				"Name": "Sign",
+				"Text": "DEFEND YER HONOR AND YE LIFE-"
+			},
+			{
+				"Name": "Sign",
+				"Text": "*it goes on for a while*"
+			},
+			{
+				"Name": "Shakespeare",
+				"Image": "Me",
+				"Text": "My magnum opus."
+			}
+		],
+		"1": [
+			{
+				"Name": "Best Writer of All Time",
+				"Image": "Me",
+				"Text": "I put my heart and soul into this."
+			}
+		]
+	},
+	"SkeletonNPC4": {
+		"0": [
+			{
+				"Name": "Greg",
+				"Text": "ahh. our final battle."
+			},
+			{
+				"Name": "Greg",
+				"Text": "i've trained for this day for a millenia."
+			},
+			{
+				"Name": "Greg",
+				"Text": "come at me with all you've got."
+			},
+			{
+				"Name": "Me",
+				"Text": "..."
+			},
+			{
+				"Name": "Greg",
+				"Text": "just kiddin man. it's me! greg!"
+			},
+			{
+				"Name": "Me",
+				"Text": "Oh! Thank god."
+			},
+			{
+				"Name": "Greg",
+				"Text": "got ya worried there huh? got ya real worried."
+			},
+			{
+				"Name": "Me",
+				"Text": "Soooo worried, yep."
+			},
+			{
+				"Name": "Greg",
+				"Text": "you were all like NOOOO DONT KILL ME!"
+			},
+			{
+				"Name": "Greg",
+				"Text": "IM LIKE SO SCARED!"
+			},
+			{
+				"Name": "Greg",
+				"Text": "n shit."
+			},
+			{
+				"Name": "Me",
+				"Text": "You got me good for sure."
+			},
+			{
+				"Name": "Greg",
+				"Text": "anyways. exits up and to the right, so."
+			},
+			{
+				"Name": "Greg",
+				"Text": "pretty sure boss wants to have a word with you, but don't worry."
+			},
+			{
+				"Name": "Fearless Compatriot",
+				"Image": "Greg",
+				"Text": "ill stick up for you."
+			},
+			{
+				"Name": "Me",
+				"Text": "Thanks Greg. You're a good guy."
+			}
+		],
+		"1": [
+			{
+				"Name": "Greg",
+				"Text": "go get em tiger!"
+			}
+		],
+		"2": [
+			{
+				"Name": "Greg",
+				"Text": "always be yourself."
+			}
+		],
+		"3": [
+			{
+				"Name": "Greg",
+				"Text": "remember to stay kind."
+			}
+		],
+		"4": [
+			{
+				"Name": "Greg",
+				"Text": "see ya later alligator."
+			}
+		]
 	}
 }
