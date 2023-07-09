@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://bca0xcu7xnkx7"]
+
+[ext_resource type="Script" path="res://scripts/next_level_collider.gd" id="1_k4q3s"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_78onm"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="Animation" id="Animation_qlia1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d5bwr"]
+resource_name = "fade_from_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a6ed6"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlmqe"]
+_data = {
+"RESET": SubResource("Animation_qlia1"),
+"fade_from_black": SubResource("Animation_d5bwr"),
+"fade_to_black": SubResource("Animation_a6ed6")
+}
+
+[node name="NextLevel" type="Area2D"]
+script = ExtResource("1_k4q3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(609, 29)
+shape = SubResource("WorldBoundaryShape2D_78onm")
+
+[node name="FadeBlack" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="FadeBlack"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FadeAnimation" type="AnimationPlayer" parent="FadeBlack"]
+libraries = {
+"": SubResource("AnimationLibrary_mlmqe")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="FadeBlack/FadeAnimation" to="." method="_on_fade_animation_animation_finished"]
