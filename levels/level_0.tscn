@@ -1,15 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://caf5cj8estosl"]
+[gd_scene load_steps=15 format=3 uid="uid://caf5cj8estosl"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_dlxqc"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_fafdl"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_wt13u"]
 [ext_resource type="PackedScene" uid="uid://dl8vc046fcjch" path="res://scenes/sleeping_knight.tscn" id="3_ggvro"]
-[ext_resource type="PackedScene" path="res://scenes/sign.tscn" id="4_066gy"]
+[ext_resource type="PackedScene" uid="uid://c01fab6j58ira" path="res://scenes/sign.tscn" id="4_066gy"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="5_gox0s"]
 [ext_resource type="Script" path="res://scripts/PhoneCall.gd" id="6_o4mct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lexo2"]
 size = Vector2(14, 27)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2bv8x"]
+normal = Vector2(-1, 0)
+distance = 1.41421
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_fafdl")
@@ -1735,6 +1739,9 @@ terrain_set_1/terrain_2/name = "vine_decor"
 terrain_set_1/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ln604"]
+normal = Vector2(-1, 0)
+
 [sub_resource type="Gradient" id="Gradient_d3wd2"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.661017)
@@ -1748,9 +1755,6 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.517845, 0.442735)
 fill_to = Vector2(-0.143, 0.323)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ln604"]
-normal = Vector2(-1, 0)
 
 [node name="Node2D2" type="Node2D"]
 
@@ -1773,7 +1777,7 @@ zoom = Vector2(5.092, 5.092)
 limit_left = -255
 limit_top = -291
 limit_right = 600
-limit_bottom = 50
+limit_bottom = 10000
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -1783,7 +1787,12 @@ drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource("2_wt13u")
 
-[node name="EnableSmoothTimer" type="Timer" parent="player/Camera2D"]
+[node name="SmoothEnablePoint" type="Area2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothEnablePoint"]
+position = Vector2(-53, -3)
+shape = SubResource("WorldBoundaryShape2D_2bv8x")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_tha6c")
@@ -1811,6 +1820,16 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 10
 layer_3/tile_data = PackedInt32Array()
+
+[node name="ui" parent="." instance=ExtResource("5_gox0s")]
+
+[node name="PhoneCall" type="Area2D" parent="." groups=["npc"]]
+position = Vector2(-21, 0)
+script = ExtResource("6_o4mct")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneCall"]
+position = Vector2(-33, 3)
+shape = SubResource("WorldBoundaryShape2D_ln604")
 
 [node name="SleepingKnight" parent="." groups=["npc"] instance=ExtResource("3_ggvro")]
 position = Vector2(137, -16)
@@ -1852,16 +1871,6 @@ shadow_color = Color(0, 0, 0, 0.282353)
 texture = SubResource("GradientTexture2D_diiag")
 texture_scale = 1.04
 
-[node name="ui" parent="." instance=ExtResource("5_gox0s")]
-
-[node name="PhoneCall" type="Area2D" parent="." groups=["npc"]]
-position = Vector2(-21, 0)
-script = ExtResource("6_o4mct")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneCall"]
-position = Vector2(-33, 3)
-shape = SubResource("WorldBoundaryShape2D_ln604")
-
 [node name="PointLight2D5" type="PointLight2D" parent="."]
 position = Vector2(376, -35)
 scale = Vector2(0.209893, 0.233888)
@@ -1884,7 +1893,7 @@ texture_scale = 1.04
 
 [connection signal="area_entered" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_entered"]
 [connection signal="area_exited" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_exited"]
-[connection signal="timeout" from="player/Camera2D/EnableSmoothTimer" to="player/Camera2D" method="_on_enable_smooth_timer_timeout"]
+[connection signal="body_entered" from="SmoothEnablePoint" to="player/Camera2D" method="_on_smooth_enable_point_body_entered"]
 [connection signal="phone_call_start" from="ui" to="player" method="_on_ui_phone_call_start"]
 [connection signal="phone_call_stop" from="ui" to="player" method="_on_ui_phone_call_stop"]
 [connection signal="phone_call_stop" from="ui" to="PhoneCall" method="_on_ui_phone_call_stop"]
