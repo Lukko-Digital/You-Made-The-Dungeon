@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_8t36d"]
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="2_ar37y"]
-[ext_resource type="PackedScene" uid="uid://p880ifrg0fth" path="res://scenes/sleeping_knight.tscn" id="3_d0ivd"]
+[ext_resource type="PackedScene" path="res://scenes/sleeping_knight.tscn" id="3_d0ivd"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="4_mqsvc"]
-[ext_resource type="PackedScene" uid="uid://cjgg86yjdqtp7" path="res://scenes/dart_shooter.tscn" id="5_g2vvj"]
-[ext_resource type="PackedScene" uid="uid://cobsd5flmdxx" path="res://scenes/jump_spike.tscn" id="5_qcprh"]
+[ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="5_g2vvj"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="5_qcprh"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="7_d18tm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4ot7"]
@@ -1235,7 +1235,7 @@ texture = ExtResource("1_8t36d")
 5:28/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_18gkm"]
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 34
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "brick"
