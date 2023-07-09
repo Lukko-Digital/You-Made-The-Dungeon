@@ -1711,11 +1711,11 @@ sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
 [node name="player" parent="LevelEssentials" instance=ExtResource("1_2c08x")]
 z_index = 5
-position = Vector2(-313, -18)
+position = Vector2(-312, -16)
 collision_mask = 10
 
 [node name="Camera2D" type="Camera2D" parent="LevelEssentials/player"]
-position = Vector2(21, -9)
+position = Vector2(72, -10)
 zoom = Vector2(5.092, 5.092)
 limit_left = -300
 limit_top = -430

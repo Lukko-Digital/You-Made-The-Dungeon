@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_fafdl"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_wt13u"]
 [ext_resource type="PackedScene" uid="uid://dl8vc046fcjch" path="res://scenes/sleeping_knight.tscn" id="3_ggvro"]
-[ext_resource type="PackedScene" uid="uid://c01fab6j58ira" path="res://scenes/sign.tscn" id="4_066gy"]
+[ext_resource type="PackedScene" path="res://scenes/sign.tscn" id="4_066gy"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="5_gox0s"]
 [ext_resource type="Script" path="res://scripts/PhoneCall.gd" id="6_o4mct"]
 
