@@ -17,5 +17,6 @@ func _process(delta):
 
 [node name="Music" type="AudioStreamPlayer"]
 stream = ExtResource("1_0owcg")
+volume_db = -6.85
 autoplay = true
 script = SubResource("GDScript_5ehwn")

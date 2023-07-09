@@ -77,7 +77,6 @@
 		"0": [
 			{
 				"Name": "Phone",
-				"Image": "Sign",
 				"Text": "*ring* *ring*"
 			},
 			{
@@ -86,7 +85,6 @@
 			},
 			{
 				"Name": "Boss",
-				"Image": "SkeletonNPC",
 				"Text": "Hey! What are you still doing down there?"
 			},
 			{
@@ -111,6 +109,7 @@
 			},
 			{
 				"Name": "Phone",
+				"Image": "Boss",
 				"Text": "*click*"
 			},
 			{
@@ -120,38 +119,6 @@
 			{
 				"Name": "Me",
 				"Text": "Well, I'm right next to the elevator, I should make it out in time."
-			}
-		]
-	},
-	"SkeletonNPC": {
-		"0": [
-			{
-				"Name": "SkeletonNPC",
-				"Text": "yoooooooo"
-			},
-			{
-				"Name": "SkeletonNPC",
-				"Text": "ma boney boy"
-			},
-			{
-				"Name": "Me",
-				"Text": "whats poppin"
-			},
-			{
-				"Name": "SkeletonNPC",
-				"Text": "fall good"
-			}
-		],
-		"3": [
-			{
-				"Name": "SkeletonNPC",
-				"Text": "gogogo"
-			}
-		],
-		"6": [
-			{
-				"Name": "SkeletonNPC",
-				"Text": "fall good"
 			}
 		]
 	},
