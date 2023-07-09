@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://061m4fiesgf2"]
+[gd_scene load_steps=18 format=3 uid="uid://061m4fiesgf2"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_ohfwd"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_t6g6p"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_n6aoq"]
 [ext_resource type="PackedScene" uid="uid://c5qtdp88j6b5u" path="res://scenes/dart_shooter.tscn" id="6_0y010"]
 [ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="7_4vcu4"]
-[ext_resource type="PackedScene" uid="uid://cobsd5flmdxx" path="res://scenes/jump_spike.tscn" id="8_6kgju"]
+[ext_resource type="PackedScene" path="res://scenes/jump_spike.tscn" id="8_6kgju"]
 [ext_resource type="PackedScene" uid="uid://c01fab6j58ira" path="res://scenes/sign.tscn" id="9_g16cf"]
+[ext_resource type="PackedScene" path="res://scenes/lamp.tscn" id="10_apfy8"]
+[ext_resource type="PackedScene" uid="uid://tghk2pfvvax" path="res://scenes/torch.tscn" id="11_gml5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opyap"]
 size = Vector2(14, 27)
@@ -2315,5 +2317,69 @@ position = Vector2(2437, -461)
 
 [node name="Sign" parent="." instance=ExtResource("9_g16cf")]
 position = Vector2(1929, -651)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(2066, -667)
+color = Color(0.635294, 0.721569, 1, 1)
+
+[node name="Lamp" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(-60, -7)
+
+[node name="Torch" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(25, -119)
+
+[node name="Torch2" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(25, -231)
+
+[node name="Lamp2" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(489, -151)
+
+[node name="Torch3" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(393, -320)
+
+[node name="Torch4" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(554, -360)
+
+[node name="Lamp3" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(206, -263)
+
+[node name="Torch5" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(906, -489)
+
+[node name="Lamp4" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(789, -375)
+
+[node name="Torch6" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(1081, -600)
+
+[node name="Lamp5" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(1588, -391)
+
+[node name="Torch7" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(1278, -638)
+
+[node name="Torch8" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(1446, -672)
+
+[node name="Torch9" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(1580, -738)
+
+[node name="Lamp6" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(1712, -775)
+
+[node name="Lamp7" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(1911, -647)
+
+[node name="Torch10" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(2560, -497)
+
+[node name="Torch11" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(2401, -496)
+
+[node name="Torch12" parent="." instance=ExtResource("11_gml5p")]
+position = Vector2(2224, -497)
+
+[node name="Lamp8" parent="." instance=ExtResource("10_apfy8")]
+position = Vector2(2056, -375)
 
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
