@@ -8,12 +8,17 @@ var dialogue
 var num_interactions
 var current_dialogue_idx = 0
 
+@onready var dialogue_prompt: Control = $HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt
+@onready var dialogue_box: NinePatchRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox
+@onready var name_label: Label = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name
+@onready var dialogue_label: Label = 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue
+
 const TEXT_SPEED = 0.05
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.hide()
+	dialogue_prompt.hide()
+	dialogue_box.hide()
 	
 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer.wait_time = TEXT_SPEED
 	
@@ -31,7 +36,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and current_interactable_npc:
-#		$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
+#		dialogue_prompt.hide()
 #		$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/Label.text = 'asdf'
 		load_npc_dialogue(current_interactable_npc)
 		if not in_interaction:
@@ -39,14 +44,14 @@ func _process(delta):
 
 func _on_npc_dialogue_collider_area_entered(area):
 	if area.is_in_group('npc'):
-		$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.show()
+		dialogue_prompt.show()
 		current_interactable_npc = area.name
 
 
 func _on_npc_dialogue_collider_area_exited(area):
 	if area.is_in_group('npc'):
-		$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
-		$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.hide()
+		dialogue_prompt.hide()
+		dialogue_box.hide()
 		current_dialogue_idx = 0
 		current_interactable_npc = null
 		in_interaction = false
@@ -66,15 +71,15 @@ func get_dialogue_list(name):
 
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
-		$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.hide()
-		$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
+		dialogue_box.hide()
+		dialogue_prompt.show()
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
 		return
 	
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox.show()
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt.hide()
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name.text = current_interactable_npc
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue.text = dialogue_list[current_dialogue_idx]
+	dialogue_box.show()
+	dialogue_prompt.hide()
+	name_label.text = current_interactable_npc
+	dialogue_label.text = dialogue_list[current_dialogue_idx]
 	
 	current_dialogue_idx += 1
