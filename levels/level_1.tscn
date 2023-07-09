@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5hrq6483g8eq"]
+[gd_scene load_steps=9 format=3 uid="uid://5hrq6483g8eq"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_2c08x"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_3pk5m"]
@@ -7,6 +7,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxiyh"]
 size = Vector2(14, 27)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wuwo1"]
+normal = Vector2(-1, 0)
+distance = 1.41421
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hp7nu"]
 texture = ExtResource("2_3pk5m")
@@ -1462,12 +1466,14 @@ sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_2c08x")]
+[node name="LevelEssentials" type="Node2D" parent="."]
+
+[node name="player" parent="LevelEssentials" instance=ExtResource("1_2c08x")]
 z_index = 5
 position = Vector2(-313, -18)
 collision_mask = 10
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="LevelEssentials/player"]
 position = Vector2(21, -34)
 zoom = Vector2(5.092, 5.092)
 limit_left = -300
@@ -1482,17 +1488,22 @@ drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource("2_8c2v1")
 
-[node name="EnableSmoothTimer" type="Timer" parent="player/Camera2D"]
-
-[node name="NPCDialogueCollider" type="Area2D" parent="player"]
+[node name="NPCDialogueCollider" type="Area2D" parent="LevelEssentials/player"]
 position = Vector2(0, 14)
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/NPCDialogueCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEssentials/player/NPCDialogueCollider"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_rxiyh")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="SmoothEnablePoint" type="Area2D" parent="LevelEssentials"]
+position = Vector2(0, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEssentials/SmoothEnablePoint"]
+position = Vector2(-123, 5)
+shape = SubResource("WorldBoundaryShape2D_wuwo1")
+
+[node name="TileMap" type="TileMap" parent="LevelEssentials"]
 tile_set = SubResource("TileSet_3dud5")
 format = 2
 layer_0/name = "bg"
@@ -1519,7 +1530,6 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 10
 layer_3/tile_data = PackedInt32Array()
 
-[node name="ui" parent="." instance=ExtResource("3_02ns2")]
-visible = false
+[node name="ui" parent="LevelEssentials" instance=ExtResource("3_02ns2")]
 
-[connection signal="timeout" from="player/Camera2D/EnableSmoothTimer" to="player/Camera2D" method="_on_enable_smooth_timer_timeout"]
+[connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
