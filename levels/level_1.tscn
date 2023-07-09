@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://5hrq6483g8eq"]
+[gd_scene load_steps=8 format=3 uid="uid://5hrq6483g8eq"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_2c08x"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_3pk5m"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_8c2v1"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="3_02ns2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxiyh"]
@@ -1463,7 +1464,7 @@ sources/6 = SubResource("TileSetAtlasSource_hp7nu")
 
 [node name="player" parent="." instance=ExtResource("1_2c08x")]
 z_index = 5
-position = Vector2(-44, -34)
+position = Vector2(-313, -18)
 collision_mask = 10
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -1473,13 +1474,13 @@ limit_left = -300
 limit_top = -250
 limit_right = 10000
 limit_bottom = 200
-limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_vertical_enabled = true
 drag_top_margin = 0.6
 drag_bottom_margin = 0.0
 editor_draw_limits = true
+script = ExtResource("2_8c2v1")
 
 [node name="EnableSmoothTimer" type="Timer" parent="player/Camera2D"]
 
@@ -1520,3 +1521,5 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="ui" parent="." instance=ExtResource("3_02ns2")]
 visible = false
+
+[connection signal="timeout" from="player/Camera2D/EnableSmoothTimer" to="player/Camera2D" method="_on_enable_smooth_timer_timeout"]
