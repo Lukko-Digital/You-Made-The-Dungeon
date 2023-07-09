@@ -7,20 +7,22 @@ const DIALOGUE_PATH: String = "res://assets/dialogue/dialogue.json"
 var dialogue
 var num_interactions
 var current_dialogue_idx = 0
+var display_in_progress = false
 
 @onready var dialogue_prompt: Control = $HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt
 @onready var dialogue_box: NinePatchRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name
 @onready var dialogue_label: Label = 	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Dialogue
+@onready var text_timer: Timer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer
 
-const TEXT_SPEED = 0.05
+const TEXT_SPEED = 0.03
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	dialogue_prompt.hide()
 	dialogue_box.hide()
 	
-	$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer.wait_time = TEXT_SPEED
+	text_timer.wait_time = TEXT_SPEED
 	
 	# Load dialogue json
 	assert(FileAccess.file_exists(DIALOGUE_PATH), "Dialog file at %s does not exist" % DIALOGUE_PATH)
@@ -36,9 +38,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and current_interactable_npc:
-#		dialogue_prompt.hide()
-#		$HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/Label.text = 'asdf'
-		load_npc_dialogue(current_interactable_npc)
+		if display_in_progress:
+			dialogue_label.visible_characters = len(dialogue_label.text)
+		else:
+			load_npc_dialogue(current_interactable_npc)
 		if not in_interaction:
 			in_interaction = true
 
@@ -47,7 +50,6 @@ func _on_npc_dialogue_collider_area_entered(area):
 		dialogue_prompt.show()
 		current_interactable_npc = area.name
 
-
 func _on_npc_dialogue_collider_area_exited(area):
 	if area.is_in_group('npc'):
 		dialogue_prompt.hide()
@@ -55,7 +57,6 @@ func _on_npc_dialogue_collider_area_exited(area):
 		current_dialogue_idx = 0
 		current_interactable_npc = null
 		in_interaction = false
-		
 
 func load_npc_dialogue(name):
 	var dialogue_list = get_dialogue_list(name)
@@ -77,9 +78,22 @@ func handle_dialogue_display(dialogue_list):
 		current_dialogue_idx = 0
 		return
 	
+	# handle visablilty
 	dialogue_box.show()
 	dialogue_prompt.hide()
+	
+	# set text
 	name_label.text = current_interactable_npc
 	dialogue_label.text = dialogue_list[current_dialogue_idx]
 	
+	# animation
+	dialogue_label.visible_characters = 0
+	display_in_progress = true
+	
+	while dialogue_label.visible_characters < len(dialogue_label.text):
+		dialogue_label.visible_characters += 1
+		text_timer.start()
+		await text_timer.timeout
+	
+	display_in_progress = false
 	current_dialogue_idx += 1
