@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://db8r5sbi6msf7"]
+[gd_scene load_steps=10 format=3 uid="uid://owf1dkvilyug"]
 
 [ext_resource type="Script" path="res://scripts/credits.gd" id="1_qmvcy"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_s7j8h"]
@@ -2076,6 +2076,7 @@ text = "A Game By:"
 horizontal_alignment = 1
 
 [node name="FadeBlack" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="FadeBlack"]
 anchors_preset = 15
