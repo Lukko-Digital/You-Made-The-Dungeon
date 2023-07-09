@@ -146,7 +146,7 @@ func handle_animation():
 
 func handle_vine_climbing():
 	for body in ChestCollider.get_overlapping_bodies():
-		if body.name == "Vines" and velocity.y > 0:
+		if body.name == "Vines" and velocity.y >= 0:
 			is_on_vines = true
 			animation_tree["parameters/conditions/climb"] = true
 			animation_tree["parameters/conditions/not_climb"] = false
