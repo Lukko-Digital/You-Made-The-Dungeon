@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi82ko0ynhyo4"]
+[gd_scene load_steps=11 format=3 uid="uid://crcy23olml1ga"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_0ah7f"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="3_04way"]
-[ext_resource type="Texture2D" uid="uid://vjvu0xdixs4t" path="res://assets/sprites/start1.png" id="3_m6m5h"]
-[ext_resource type="Texture2D" uid="uid://c1mvbcdp3lec5" path="res://assets/sprites/quit1.png" id="3_us3ek"]
-[ext_resource type="Texture2D" uid="uid://dbfoioo7qqhu1" path="res://assets/sprites/start2.png" id="4_ngcxh"]
-[ext_resource type="Texture2D" uid="uid://duivo1bj4naj3" path="res://assets/sprites/quit2.png" id="4_vwa38"]
-[ext_resource type="Texture2D" uid="uid://blb8v4pac76ck" path="res://assets/sprites/quit3.png" id="5_p3y0r"]
-[ext_resource type="Texture2D" uid="uid://b8x52ev47e4tm" path="res://assets/sprites/start3.png" id="5_pwuhi"]
+[ext_resource type="Texture2D" uid="uid://d085xxm68rx6b" path="res://assets/sprites/start1.png" id="3_m6m5h"]
+[ext_resource type="Texture2D" uid="uid://ckho0u01b3h3g" path="res://assets/sprites/quit1.png" id="3_us3ek"]
+[ext_resource type="Texture2D" uid="uid://77v3yqwdsotu" path="res://assets/sprites/start2.png" id="4_ngcxh"]
+[ext_resource type="Texture2D" uid="uid://c3sdxq2axj7di" path="res://assets/sprites/quit2.png" id="4_vwa38"]
+[ext_resource type="Texture2D" uid="uid://dqj5duffk5r8v" path="res://assets/sprites/quit3.png" id="5_p3y0r"]
+[ext_resource type="Texture2D" uid="uid://ccnmo2qs1yol3" path="res://assets/sprites/start3.png" id="5_pwuhi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vak8j"]
 texture = ExtResource("3_04way")
