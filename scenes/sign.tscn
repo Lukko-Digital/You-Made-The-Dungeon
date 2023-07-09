@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_50pta"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibm3u"]
-radius = 24.0
+radius = 19.0
 
 [node name="Sign" type="Area2D"]
 collision_layer = 8
