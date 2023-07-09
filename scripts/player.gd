@@ -26,6 +26,7 @@ var is_on_spikes: bool = false
 var is_on_vines: bool = false
 var is_on_dart: bool = false
 var jumping_off_dart: bool = false
+var dart_exit_wall_jump_available = false
 
 func _ready():
 	animation_tree["parameters/conditions/not_shot"] = true
@@ -33,15 +34,12 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 	handle_animation()
-#	print(animation_tree["parameters/conditions/shot_head"],
-#		animation_tree["parameters/conditions/shot_body"],
-#		animation_tree["parameters/conditions/not_shot"])
 
 func handle_movement(delta: float) -> void:
 	handle_movement_gravity(delta)
 	handle_movement_run(delta)
-	handle_movement_jump(delta)
 	handle_trap_collisions(delta)
+	handle_movement_jump(delta)
 	handle_vine_climbing()
 
 	move_and_slide()
@@ -97,6 +95,7 @@ func handle_movement_jump(delta: float) -> void:
 	if is_on_floor():
 		last_grounded = 0.0
 		is_jumping = false
+		dart_exit_wall_jump_available = false
 		
 	if (is_on_floor() or last_grounded <= COYOTE_TIME_SECS) and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
 		velocity.y = -JUMP_SPEED
@@ -113,6 +112,10 @@ func handle_movement_jump(delta: float) -> void:
 		animation_tree["parameters/conditions/moving"] = false
 		is_on_vines = false
 		gravity_coeff = 1
+	elif dart_exit_wall_jump_available and last_jump_input <= COYOTE_TIME_SECS and not is_jumping:
+		velocity.y = -JUMP_SPEED
+		is_jumping = true
+		dart_exit_wall_jump_available = false
 	else:
 		gravity_coeff = 1.0
 		
@@ -145,8 +148,8 @@ func handle_vine_climbing():
 		if body.name == "Vines" and velocity.y > 0:
 			is_on_vines = true
 			animation_tree["parameters/conditions/climb"] = true
-		animation_tree["parameters/conditions/not_climb"] = false
-		is_jumping = false
+			animation_tree["parameters/conditions/not_climb"] = false
+			is_jumping = false
 
 #Called when you jump off the dart or hit a wall
 func off_dart(body):
@@ -156,6 +159,8 @@ func off_dart(body):
 	animation_tree["parameters/conditions/not_shot"] = true
 	is_on_dart = false
 	jumping_off_dart = false
+	if is_on_wall():
+		dart_exit_wall_jump_available = true
 	
 func on_dart(body):
 	#Sets velocity/position equal to darts velocity/position
