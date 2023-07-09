@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://5hrq6483g8eq"]
+[gd_scene load_steps=10 format=3 uid="uid://5hrq6483g8eq"]
 
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="1_2c08x"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="2_3pk5m"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_8c2v1"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="3_02ns2"]
+[ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_6oog4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxiyh"]
 size = Vector2(14, 27)
@@ -1785,5 +1786,8 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="ui" parent="LevelEssentials" instance=ExtResource("3_02ns2")]
 visible = false
+
+[node name="NextLevel" parent="LevelEssentials" instance=ExtResource("5_6oog4")]
+position = Vector2(1638, -201)
 
 [connection signal="body_entered" from="LevelEssentials/SmoothEnablePoint" to="LevelEssentials/player/Camera2D" method="_on_smooth_enable_point_body_entered"]
