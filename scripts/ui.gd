@@ -87,13 +87,14 @@ func get_dialogue_list(npc_name):
 
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
+		print(current_interactable_npc)
 		dialogue_box.hide()
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
+		if current_interactable_npc == 'SkeletonNPC5':
+			get_tree().change_scene_to_file("res://scenes/credits.tscn")
 		if current_interactable_npc != 'PhoneCall':
 			dialogue_prompt.show()
-		elif current_interactable_npc != 'SkeletonNPC5':
-			get_tree().change_scene_to_file("res://scenes/credits.tscn")
 		else:
 			phone_call_stop.emit()
 			arrow_animation.current_animation = 'default'
