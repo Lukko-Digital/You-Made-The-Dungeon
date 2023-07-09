@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tghk2pfvvax"]
+[gd_scene load_steps=7 format=3 uid="uid://cbwjhi7gp8q7u"]
 
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_5c464"]
 
@@ -60,12 +60,12 @@ fill_to = Vector2(-0.143, 0.323)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5c464")
 hframes = 5
-frame = 1
+frame = 3
 region_enabled = true
 region_rect = Rect2(0, 400.404, 80, 27.8369)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
+autoplay = "idle_2"
 libraries = {
 "": SubResource("AnimationLibrary_syh2y")
 }
