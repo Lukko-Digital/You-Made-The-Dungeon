@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkhd2ngxnf8vq"]
+[gd_scene load_steps=14 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
 [ext_resource type="Texture2D" uid="uid://03o6p8phl2e2" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
@@ -31,7 +31,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_72qlr"]
-resource_name = "idle"
+resource_name = "with E"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,9 +46,26 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_48kpm"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sr86s"]
 _data = {
-"idle": SubResource("Animation_72qlr")
+"default": SubResource("Animation_48kpm"),
+"with E": SubResource("Animation_72qlr")
 }
 
 [node name="ui" type="CanvasLayer"]
@@ -78,6 +95,7 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
 [node name="DialoguePrompt" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -174,20 +192,21 @@ text_overrun_behavior = 1
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
-[node name="Arrow Container" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(25, 15)
+[node name="ArrowContainer" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 35)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Arrow" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Arrow Container"]
+[node name="Arrow" type="Sprite2D" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/ArrowContainer"]
 z_index = 10
 scale = Vector2(5, 5)
 texture = ExtResource("8_wo5qd")
-hframes = 2
+hframes = 4
+frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Arrow Container"]
+[node name="ArrowAnimation" type="AnimationPlayer" parent="HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/ArrowContainer"]
 root_node = NodePath("../Arrow")
-autoplay = "idle"
+autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_sr86s")
 }

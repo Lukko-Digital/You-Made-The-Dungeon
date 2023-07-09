@@ -23,6 +23,7 @@ signal phone_call_stop
 @onready var portrait: TextureRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Portrait
 @onready var text_timer: Timer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/TextTimer
 @onready var dialogue_noise: AudioStreamPlayer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/AudioStreamPlayer
+@onready var arrow_animation: AnimationPlayer = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/ArrowContainer/ArrowAnimation
 
 const TEXT_SPEED = 0.03
 
@@ -59,6 +60,7 @@ func _on_npc_dialogue_collider_area_entered(area):
 		load_npc_dialogue('PhoneCall')
 		current_interactable_npc = area.name
 		phone_call_start.emit()
+		arrow_animation.current_animation = 'with E'
 	elif area.is_in_group('npc'):
 		dialogue_prompt.show()
 		current_interactable_npc = area.name
@@ -92,6 +94,7 @@ func handle_dialogue_display(dialogue_list):
 			dialogue_prompt.show()
 		else:
 			phone_call_stop.emit()
+			arrow_animation.current_animation = 'default'
 		return
 			
 	
