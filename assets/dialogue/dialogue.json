@@ -234,12 +234,12 @@
 				"Text": "that's what I'M sayin. gotta call OSHA or some shit."
 			},
 			{
-				"Name": "Me",
-				"Text": "Remember what happened to Nelson?"
+				"Name": "Greg",
+				"Text": "remember what happened to nelson?"
 			},
 			{
-				"Name": "Greg",
-				"Text": "try not to."
+				"Name": "Me",
+				"Text": "I try not to..."
 			}
 		],
 		"2": [
@@ -250,12 +250,6 @@
 			{
 				"Name": "Me",
 				"Text": "See ya Greg."
-			}
-		],
-		"3": [
-			{
-				"Name": "Greg",
-				"Text": "..."
 			}
 		]
 	}
