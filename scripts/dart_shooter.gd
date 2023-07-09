@@ -5,7 +5,7 @@ var dart_scene = preload("res://scenes/dart.tscn")
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_timer: Timer = $Timer
 
-func _on_line_of_sight_body_entered(body):
+func _on_line_of_sight_body_entered(_body):
 	animation_tree["parameters/conditions/shoot"] = true
 	animation_timer.start(0.69)
 	

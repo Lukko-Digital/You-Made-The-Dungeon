@@ -38,11 +38,11 @@ func _ready():
 	
 	# Instantiate num_interactions
 	num_interactions = dialogue.duplicate()
-	for name in num_interactions.keys():
-		num_interactions[name] = 0
+	for npc_name in num_interactions.keys():
+		num_interactions[npc_name] = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact") and current_interactable_npc:
 		if display_in_progress:
 			dialogue_label.visible_characters = len(dialogue_label.text)
@@ -64,16 +64,16 @@ func _on_npc_dialogue_collider_area_exited(area):
 		current_interactable_npc = null
 		in_interaction = false
 
-func load_npc_dialogue(name):
-	var dialogue_list = get_dialogue_list(name)
+func load_npc_dialogue(npc_name):
+	var dialogue_list = get_dialogue_list(npc_name)
 	handle_dialogue_display(dialogue_list)
 	
-func get_dialogue_list(name):
-	var dialogue_options = dialogue[name]
+func get_dialogue_list(npc_name):
+	var dialogue_options = dialogue[npc_name]
 	var interaction_limits = dialogue_options.keys()
 	interaction_limits.reverse()
 	for limit in interaction_limits:
-		if num_interactions[name] >= int(limit):
+		if num_interactions[npc_name] >= int(limit):
 			return dialogue_options[str(limit)]
 
 func handle_dialogue_display(dialogue_list):
@@ -89,10 +89,10 @@ func handle_dialogue_display(dialogue_list):
 	dialogue_prompt.hide()
 	
 	# set text
-	var name = dialogue_list[current_dialogue_idx]["Name"]
-	name_label.text = name
+	var speaker_name = dialogue_list[current_dialogue_idx]["Name"]
+	name_label.text = speaker_name
 	dialogue_label.text = dialogue_list[current_dialogue_idx]["Text"]
-	portrait.texture = load("res://assets/portraits/%s.webp" % name)
+	portrait.texture = load("res://assets/portraits/%s.webp" % speaker_name)
 	
 	# animation
 	dialogue_label.visible_characters = 0
