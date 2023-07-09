@@ -13,6 +13,9 @@ var current_dialogue_idx = 0
 var display_in_progress = false
 var rng = RandomNumberGenerator.new()
 
+signal phone_call_start
+signal phone_call_stop
+
 @onready var dialogue_prompt: Control = $HBoxContainer/VBoxContainer/MarginContainer2/DialoguePrompt
 @onready var dialogue_box: NinePatchRect = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/MarginContainer2/DialogueBox/VBoxContainer/HBoxContainer/Text/Name
@@ -52,10 +55,14 @@ func _process(_delta):
 			in_interaction = true
 
 func _on_npc_dialogue_collider_area_entered(area):
-	if area.is_in_group('npc'):
+	if area.name == 'PhoneCall':
+		load_npc_dialogue('PhoneCall')
+		current_interactable_npc = area.name
+		phone_call_start.emit()
+	elif area.is_in_group('npc'):
 		dialogue_prompt.show()
 		current_interactable_npc = area.name
-
+		
 func _on_npc_dialogue_collider_area_exited(area):
 	if area.is_in_group('npc'):
 		dialogue_prompt.hide()
@@ -79,10 +86,14 @@ func get_dialogue_list(npc_name):
 func handle_dialogue_display(dialogue_list):
 	if current_dialogue_idx >= len(dialogue_list):
 		dialogue_box.hide()
-		dialogue_prompt.show()
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
+		if current_interactable_npc != 'PhoneCall':
+			dialogue_prompt.show()
+		else:
+			phone_call_stop.emit()
 		return
+			
 	
 	# handle visablilty
 	dialogue_box.show()

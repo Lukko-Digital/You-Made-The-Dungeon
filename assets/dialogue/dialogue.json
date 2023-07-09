@@ -31,6 +31,42 @@
 			}
 		]
 	},
+	"PhoneCall": {
+		"0": [
+			{
+				"Name": "Phone",
+				"Text": "*ring* *ring*"
+			},
+			{
+				"Name": "Me",
+				"Text": "Hello?"
+			},
+			{
+				"Name": "Boss",
+				"Text": "Hey! What are you still doing down there?"
+			},
+			{
+				"Name": "Boss",
+				"Text": "Our meeting is starting in five minutes!"
+			},
+			{
+				"Name": "Boss",
+				"Text": "You better get out of there before the knight wakes up!"
+			},
+			{
+				"Name": "Me",
+				"Text": "..."
+			},
+			{
+				"Name": "Phone",
+				"Text": "*click*"
+			},
+			{
+				"Name": "Me",
+				"Text": "Well, I'm right next to the elevator, I should make it in time."
+			}
+		]
+	},
 	"SkeletonNPC": {
 		"0": [
 			{

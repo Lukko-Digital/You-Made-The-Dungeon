@@ -27,6 +27,7 @@ var is_on_vines: bool = false
 var is_on_dart: bool = false
 var jumping_off_dart: bool = false
 var dart_exit_wall_jump_available = false
+var phone_call: bool = false
 
 func _ready():
 	animation_tree["parameters/conditions/not_shot"] = true
@@ -57,8 +58,8 @@ func handle_movement_gravity(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, TERMINAL_FALL_SPEED, gravity * gravity_coeff * delta)
 
 func handle_movement_run(delta: float) -> void:
-	var direction := Input.get_action_strength("right") - Input.get_action_strength("left")
-	
+	var direction := Input.get_action_strength("right") - Input.get_action_strength("left")	
+	if phone_call: direction = 0
 	var norm_vel := velocity.x / RUN_SPEED
 	var norm_target_vel := direction
 	var is_decelerating: bool = (norm_vel * norm_target_vel <= 0) && (abs(norm_vel) > abs(norm_target_vel))
@@ -89,7 +90,7 @@ func handle_movement_jump(delta: float) -> void:
 	last_jump_input += delta
 	last_grounded += delta
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and not phone_call:
 		last_jump_input = 0.0
 	
 	if is_on_floor():
@@ -236,3 +237,11 @@ func _on_legs_collider_body_entered(body):
 		is_on_spikes = true
 		animation_tree["parameters/conditions/climb"] = true
 		animation_tree["parameters/conditions/not_climb"] = false
+
+
+func _on_ui_phone_call_start():
+	phone_call = true
+
+
+func _on_ui_phone_call_stop():
+	phone_call = false
