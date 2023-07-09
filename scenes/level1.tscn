@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn6xyotfar2o2"]
+[gd_scene load_steps=17 format=3 uid="uid://bn6xyotfar2o2"]
 
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="1_8t36d"]
 [ext_resource type="PackedScene" uid="uid://6ccfrhghlje3" path="res://scenes/player.tscn" id="2_ar37y"]
@@ -1030,21 +1030,12 @@ texture = ExtResource("1_8t36d")
 4:31/0 = 0
 4:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:31/0/physics_layer_0/angular_velocity = 0.0
-4:30/0 = 0
-4:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:30/0/physics_layer_0/angular_velocity = 0.0
-4:29/0 = 0
-4:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:29/0/physics_layer_0/angular_velocity = 0.0
 5:29/0 = 0
 5:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:29/0/physics_layer_0/angular_velocity = 0.0
 5:30/0 = 0
 5:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:30/0/physics_layer_0/angular_velocity = 0.0
-5:31/0 = 0
-5:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:31/0/physics_layer_0/angular_velocity = 0.0
 21:0/0 = 0
 21:0/0/terrain_set = 1
 21:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1221,6 +1212,27 @@ texture = ExtResource("1_8t36d")
 22:6/0/terrains_peering_bit/top_left_corner = 2
 22:6/0/terrains_peering_bit/top_side = 2
 22:6/0/terrains_peering_bit/top_right_corner = 2
+6:28/0 = 0
+6:28/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:28/0/physics_layer_0/angular_velocity = 0.0
+6:29/0 = 0
+6:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:29/0/physics_layer_0/angular_velocity = 0.0
+6:30/0 = 0
+6:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:30/0/physics_layer_0/angular_velocity = 0.0
+3:29/0 = 0
+3:29/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:29/0/physics_layer_0/angular_velocity = 0.0
+3:28/0 = 0
+3:28/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:28/0/physics_layer_0/angular_velocity = 0.0
+2:30/0 = 0
+2:30/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:30/0/physics_layer_0/angular_velocity = 0.0
+5:28/0 = 0
+5:28/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:28/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_18gkm"]
 physics_layer_0/collision_layer = 2
@@ -1480,7 +1492,22 @@ terrain_set_0/terrain_0/name = "vine"
 terrain_set_0/terrain_0/color = Color(0.211765, 0.45098, 0.0156863, 1)
 sources/0 = SubResource("TileSetAtlasSource_h1i4d")
 
+[sub_resource type="Gradient" id="Gradient_d3wd2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.661017)
+colors = PackedColorArray(0.763009, 0.763009, 0.763009, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iecqw"]
+gradient = SubResource("Gradient_d3wd2")
+width = 339
+height = 296
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.517845, 0.442735)
+fill_to = Vector2(-0.143, 0.323)
+
 [node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-152.0]
 
 [node name="Area2D" parent="." instance=ExtResource("3_d0ivd")]
 position = Vector2(-151, -16)
@@ -1518,7 +1545,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-393225, 1376262, 7, -393224, 1507334, 4, -327688, 1507334, 5, -327689, 1441798, 0, -327690, 1376262, 5, -393226, 1507334, 1, -458762, 1376262, 3, -458761, 1441798, 2, -458760, 1507334, 3, -917519, 1441798, 7, -917518, 1507334, 4, -851982, 1507334, 5, -851983, 1441798, 0, -851984, 1441798, 5, -917520, 1376262, 7, -983056, 1441798, 7, -983055, 1376262, 7, -983054, 1376262, 0, -851985, 1376262, 5, -917521, 1507334, 0, -983057, 1376262, 7, -1048593, 1376262, 6, -1048592, 1376262, 6, -1048591, 1441798, 6, -917522, 1376262, 5, -983058, 1507334, 0, -1048594, 1441798, 6, -1114130, 1441798, 4, -1114129, 1376262, 7, -1114128, 1441798, 7, -983059, 1376262, 5, -1048595, 1507334, 1, -1114131, 1376262, 4, -1179667, 1376262, 3, -1179666, 1441798, 2, -1179665, 1441798, 2, -1114127, 1376262, 7, -1179664, 1441798, 3, -1179663, 1441798, 3, -1048590, 1376262, 6, -1114126, 1441798, 6, -1179662, 1441798, 3, -1114125, 1507334, 4, -1048589, 1376262, 1, -1179661, 1507334, 3, -983053, 1507334, 5, -786453, 1441798, 4, -786452, 1507334, 4, -720916, 1507334, 5, -720917, 1441798, 0, -720918, 1376262, 5, -786454, 1507334, 1, -851990, 1376262, 3, -851989, 1441798, 2, -851988, 1507334, 3, -131088, 1441798, 6, -131087, 1376262, 1, -65551, 1507334, 5, -65552, 1441798, 5, -65553, 1441798, 0, -131089, 1376262, 6, -196625, 1441798, 3, -196624, 1441798, 3, -196623, 1507334, 3, -65554, 1376262, 5, -131090, 1376262, 4, -196626, 1376262, 3, -65534, 1376262, 6, -65533, 1441798, 7, 3, 1441798, 5, 2, 1441798, 5, 1, 1376262, 5, -65535, 1376262, 4, -131071, 1376262, 3, -131070, 1441798, 2, -131069, 1507334, 2, -65532, 1376262, 0, 4, 1507334, 5, -131068, 1441798, 7, -131067, 1376262, 6, -65531, 1507334, 0, -196605, 1376262, 3, -196604, 1507334, 2, -196603, 1441798, 6, -131066, 1376262, 0, -65530, 1441798, 4, -196602, 1376262, 7, -262140, 1376262, 3, -262139, 1441798, 3, -262138, 1441798, 2, -196601, 1507334, 4, -131065, 1507334, 5, -262137, 1507334, 3, -65529, 1507334, 4, 7, 1507334, 5, 6, 1441798, 5, 5, 1376262, 5)
+layer_1/tile_data = PackedInt32Array(-393225, 1376262, 7, -393224, 1507334, 4, -327688, 1507334, 5, -327689, 1441798, 0, -327690, 1376262, 5, -393226, 1507334, 1, -458762, 1376262, 3, -458761, 1441798, 2, -458760, 1507334, 3, -917519, 1441798, 7, -917518, 1507334, 4, -851982, 1507334, 5, -851983, 1441798, 0, -851984, 1441798, 5, -917520, 1376262, 7, -983056, 1441798, 7, -983055, 1376262, 7, -983054, 1376262, 0, -851985, 1376262, 5, -917521, 1507334, 0, -983057, 1376262, 7, -1048593, 1376262, 6, -1048592, 1376262, 6, -1048591, 1441798, 6, -917522, 1376262, 5, -983058, 1507334, 0, -1048594, 1441798, 6, -1114130, 1441798, 4, -1114129, 1376262, 7, -1114128, 1441798, 7, -983059, 1376262, 5, -1048595, 1507334, 1, -1114131, 1376262, 4, -1179667, 1376262, 3, -1179666, 1441798, 2, -1179665, 1441798, 2, -1114127, 1376262, 7, -1179664, 1441798, 3, -1179663, 1441798, 3, -1048590, 1376262, 6, -1114126, 1441798, 6, -1179662, 1441798, 3, -1114125, 1507334, 4, -1048589, 1376262, 1, -1179661, 1507334, 3, -983053, 1507334, 5, -786453, 1441798, 4, -786452, 1507334, 4, -720916, 1507334, 5, -720917, 1441798, 0, -720918, 1376262, 5, -786454, 1507334, 1, -851990, 1376262, 3, -851989, 1441798, 2, -851988, 1507334, 3, -131088, 6, 31, -131087, 65542, 31, -196624, 6, 30, -196623, 65542, 30, -65534, 1376262, 6, -65533, 1441798, 7, 3, 1441798, 5, 2, 1441798, 5, 1, 1376262, 5, -65535, 1376262, 4, -131071, 1376262, 3, -131070, 1441798, 2, -131069, 1507334, 2, -65532, 1376262, 0, 4, 1507334, 5, -131068, 1441798, 7, -131067, 1376262, 6, -65531, 1507334, 0, -196605, 1376262, 3, -196604, 1507334, 2, -196603, 1441798, 6, -131066, 1376262, 0, -65530, 1441798, 4, -196602, 1376262, 7, -262140, 1376262, 3, -262139, 1441798, 3, -262138, 1441798, 2, -196601, 1507334, 4, -131065, 1507334, 5, -262137, 1507334, 3, -65529, 1507334, 4, 7, 1507334, 5, 6, 1441798, 5, 5, 1376262, 5, -262156, 196614, 28, -196620, 196614, 29, -262147, 196614, 28, -196611, 196614, 29, -327700, 327686, 28, -262164, 327686, 29, -196628, 327686, 30, -327699, 393222, 28, -262163, 393222, 29, -196627, 393222, 30, -196622, 131078, 30, -131086, 131078, 31, -131091, 196614, 31, -131090, 262150, 31, -1, 196614, 31, -65536, 262150, 31)
 layer_2/name = "collision"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -1561,6 +1588,27 @@ position = Vector2(-104, -72)
 position = Vector2(-117, -28)
 
 [node name="ui" parent="." instance=ExtResource("7_d18tm")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-306, -70)
+scale = Vector2(0.340368, 0.298857)
+color = Color(0.827451, 0.886275, 0.890196, 1)
+energy = 1.15
+texture = SubResource("GradientTexture2D_iecqw")
+texture_scale = 1.04
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-184, -66)
+scale = Vector2(0.226912, 0.259875)
+color = Color(0.764706, 0.423529, 0, 1)
+energy = 2.15
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.282353)
+texture = SubResource("GradientTexture2D_iecqw")
+texture_scale = 1.04
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.635294, 0.686275, 1, 1)
 
 [connection signal="area_entered" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_entered"]
 [connection signal="area_exited" from="player/NPCDialogueCollider" to="ui" method="_on_npc_dialogue_collider_area_exited"]
