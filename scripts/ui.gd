@@ -103,10 +103,17 @@ func handle_dialogue_display(dialogue_list):
 	dialogue_prompt.hide()
 	
 	# set text
-	var speaker_name = dialogue_list[current_dialogue_idx]["Name"]
-	name_label.text = speaker_name
-	dialogue_label.text = dialogue_list[current_dialogue_idx]["Text"]
-	portrait.texture = load("res://assets/portraits/%s.png" % speaker_name)
+	var dialogue_dict = dialogue_list[current_dialogue_idx]
+	name_label.text = dialogue_dict["Name"]
+	dialogue_label.text = dialogue_dict["Text"]
+	
+	var image_name
+	if "Image" in dialogue_dict.keys():
+		image_name = dialogue_dict["Image"]
+	else:
+		image_name = dialogue_dict["Name"]
+	
+	portrait.texture = load("res://assets/portraits/%s.png" % image_name)
 	
 	# animation
 	dialogue_label.visible_characters = 0
