@@ -61,7 +61,6 @@ _data = {
 script = ExtResource("1_k4q3s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(609, 29)
 shape = SubResource("WorldBoundaryShape2D_78onm")
 
 [node name="FadeBlack" type="CanvasLayer" parent="."]
