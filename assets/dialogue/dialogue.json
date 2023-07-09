@@ -1,4 +1,18 @@
 {
+	"SleepingKnight": {
+		"0": [
+			{
+				"Name": "Me",
+				"Text": "The knight's about to wake up, better get out quick"
+			}
+		],
+		"1": [
+			{
+				"Name": "Me",
+				"Text": "Yup, better get moving"
+			}
+		]
+	},
 	"SkeletonNPC": {
 		"0": [
 			{
