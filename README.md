@@ -1,5 +1,5 @@
 # You Made the Dungeon!
-Fight your way through a dungeon... as a mob? Without the powers of a hero, find alternative routes to victory, and make some friends on the way!
+Fight your way through a dungeon . . . as a mob? Without the powers of a hero, find alternative routes to victory, and make some friends on the way!
 
 This game was made in 48 hours for the [GMTK Jam 2023](https://itch.io/jam/gmtk-2023), responding to the theme "Roles Reversed."
 
