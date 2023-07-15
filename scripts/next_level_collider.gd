@@ -12,4 +12,4 @@ func _on_body_entered(body):
 func _on_fade_animation_animation_finished(anim_name):
 	if anim_name == "fade_to_black":
 		var next_level_number = int(get_tree().get_current_scene().get_name().get_slice("_", 1)) + 1
-		get_tree().change_scene_to_file("res://levels/level_%s.tscn" % str(next_level_number))
+		get_tree().change_scene_to_file("res://scenes/levels/level_%s.tscn" % str(next_level_number))

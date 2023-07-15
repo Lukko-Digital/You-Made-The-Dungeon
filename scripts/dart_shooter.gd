@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var dart_scene = preload("res://scenes/dart.tscn")
+var dart_scene = preload("res://scenes/level_elements/dart.tscn")
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_timer: Timer = $Timer

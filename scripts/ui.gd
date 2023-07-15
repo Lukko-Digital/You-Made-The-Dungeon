@@ -92,7 +92,7 @@ func handle_dialogue_display(dialogue_list):
 		num_interactions[current_interactable_npc] += 1
 		current_dialogue_idx = 0
 		if current_interactable_npc == 'SkeletonNPC5':
-			get_tree().change_scene_to_file("res://scenes/credits.tscn")
+			get_tree().change_scene_to_file("res://scenes/menu/credits.tscn")
 		if current_interactable_npc != 'PhoneCall':
 			dialogue_prompt.show()
 		else:

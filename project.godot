@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="You-made-the-dungeon"
-run/main_scene="res://levels/level_0.tscn"
+run/main_scene="res://scenes/levels/level_0.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"

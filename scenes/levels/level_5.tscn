@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_533qx"]
 [ext_resource type="Texture2D" uid="uid://im4xv880umd8" path="res://assets/sprites/tilesetv7.png" id="3_ec1lv"]
 [ext_resource type="PackedScene" uid="uid://bkhd2ngxnf8vq" path="res://scenes/ui.tscn" id="4_lwgcw"]
-[ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/next_level_collider.tscn" id="5_brm4i"]
-[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/torch.tscn" id="6_n7rg7"]
-[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/lamp.tscn" id="7_kx5oj"]
-[ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/skeleton_npc.tscn" id="8_n7may"]
+[ext_resource type="PackedScene" uid="uid://bca0xcu7xnkx7" path="res://scenes/level_elements/next_level_collider.tscn" id="5_brm4i"]
+[ext_resource type="PackedScene" uid="uid://cbwjhi7gp8q7u" path="res://scenes/level_elements/torch.tscn" id="6_n7rg7"]
+[ext_resource type="PackedScene" uid="uid://cpgtyo3u15vyp" path="res://scenes/level_elements/lamp.tscn" id="7_kx5oj"]
+[ext_resource type="PackedScene" uid="uid://ckrsoc5xcvhor" path="res://scenes/npcs/skeleton_npc.tscn" id="8_n7may"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_du3wh"]
 size = Vector2(14, 27)

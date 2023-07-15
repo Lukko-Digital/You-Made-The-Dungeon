@@ -14,7 +14,7 @@ func _process(delta):
 func _on_start_button_pressed():
 	$FadeBlack.show()
 	fade_animation.play("fade_to_black")
-	get_tree().change_scene_to_file("res://levels/level_0.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level_0.tscn")
 
 func _on_quit_button_pressed():
 	get_tree().quit()
@@ -24,4 +24,4 @@ func _on_fade_animation_animation_finished(anim_name):
 		$FadeBlack.hide()
 	if anim_name == "fade_to_black":
 		$FadeBlack.hide()
-		get_tree().change_scene_to_file("res://levels/level_0.tscn")
+		get_tree().change_scene_to_file("res://scenes/levels/level_0.tscn")

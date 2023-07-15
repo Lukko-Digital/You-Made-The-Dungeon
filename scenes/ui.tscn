@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://bkhd2ngxnf8vq"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_jwmxf"]
-[ext_resource type="Texture2D" uid="uid://cnwgqy6mr6n0k" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
+[ext_resource type="Texture2D" uid="uid://cavlegjb2jjud" path="res://assets/sprites/textbox.png" id="2_6wxhs"]
 [ext_resource type="FontFile" uid="uid://c1t3nidwmcnq4" path="res://assets/fonts/8bitoperator_jve.ttf" id="2_exex5"]
-[ext_resource type="Texture2D" uid="uid://bnnjj34ldq27u" path="res://assets/sprites/key_press.png" id="2_iarai"]
-[ext_resource type="Texture2D" uid="uid://b7dhmhub35ual" path="res://assets/sprites/key_press_bg.png" id="3_d1usr"]
-[ext_resource type="AudioStream" uid="uid://82rs744ckvvs" path="res://assets/audio/talking_sound_2.mp3" id="5_qc10x"]
+[ext_resource type="Texture2D" uid="uid://dvptf0ig4cjww" path="res://assets/sprites/key_press.png" id="2_iarai"]
+[ext_resource type="Texture2D" uid="uid://cd0ca0fjarmus" path="res://assets/sprites/key_press_bg.png" id="3_d1usr"]
+[ext_resource type="AudioStream" uid="uid://d0i8i1exdc2wh" path="res://assets/audio/talking_sound_2.mp3" id="5_qc10x"]
 [ext_resource type="Texture2D" uid="uid://y30crtfokuno" path="res://icon.svg" id="6_e10rv"]
-[ext_resource type="Texture2D" uid="uid://uid77cxelr5k" path="res://assets/sprites/dialogue_arrow.png" id="8_wo5qd"]
+[ext_resource type="Texture2D" uid="uid://c5khp141y8clm" path="res://assets/sprites/dialogue_arrow.png" id="8_wo5qd"]
 
 [sub_resource type="Animation" id="Animation_wtn3e"]
 resource_name = "idle"
