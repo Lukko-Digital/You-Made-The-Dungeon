@@ -4,7 +4,7 @@ Fight your way through a dungeon . . . as a mob? Without the powers of a hero, f
 
 This game was made in 48 hours for the [GMTK Jam 2023](https://itch.io/jam/gmtk-2023), responding to the theme "Roles Reversed."
 
-Created by:
+Created by Delusions Digital:
 - Joshua Ehrlich: Art
 - Ian Lum: Programming
 - Miles Frank: Programming
